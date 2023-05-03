@@ -12,9 +12,12 @@ const Container = styled.div({
 export const Receipt: FC = () => {
   const tokens = useStore((state) => state.tokens);
 
+  const change = () => {};
+
   return (
     <Container>
-      <Input />
+      <Input onChange={change} />
+      <Input value={420.69} onChange={change} />
       {stringify(tokens)}
       {JSON.stringify(reduce(tokens), null, 2)}
     </Container>

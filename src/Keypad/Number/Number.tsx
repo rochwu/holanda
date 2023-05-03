@@ -3,6 +3,7 @@ import {FC} from 'react';
 import {enoughCents, useStore} from '../../state';
 import {Cell} from '../Cell';
 import {Token, Type} from '../../types';
+import {tokenizer} from '../../tokenization';
 
 const Component = styled(Cell)({
   backgroundColor: 'white',
@@ -14,14 +15,14 @@ const Component = styled(Cell)({
   },
 });
 
+type ComponentProps = Omit<
+  Parameters<typeof Component>[0],
+  'onClick' | 'label'
+>;
+
 export type NumberProps = {
   number: number;
-} & Omit<Parameters<typeof Component>[0], 'onClick' | 'label'>;
-
-const tokenize = (number: number): Token.Number => ({
-  type: Type.Number,
-  value: number,
-});
+} & Partial<ComponentProps>;
 
 export const Number: FC<NumberProps> = ({
   number,
@@ -32,7 +33,7 @@ export const Number: FC<NumberProps> = ({
   const disabled = useStore(enoughCents);
 
   const click = () => {
-    const token = tokenize(number);
+    const token = tokenizer.number(number);
 
     pushNumber(token);
   };

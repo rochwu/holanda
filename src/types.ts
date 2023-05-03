@@ -15,10 +15,17 @@ export enum OpType {
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export declare namespace Token {
-  type Op = {
+  type Decimal = {
     type: Type.Op;
-    op: OpType;
+    op: OpType.Decimal;
   };
+
+  type Op =
+    | {
+        type: Type.Op;
+        op: OpType;
+      }
+    | Decimal;
 
   type Number = {
     type: Type.Number;
@@ -40,9 +47,7 @@ export const isOp = (token?: Token.Any): token is Token.Op => {
   return !!token && token.type === Type.Op;
 };
 
-export const isDecimal = (
-  token?: Token.Any,
-): token is {type: Type.Op; op: OpType.Decimal} => {
+export const isDecimal = (token?: Token.Any): token is Token.Decimal => {
   return isOp(token) && token.op === OpType.Decimal;
 };
 

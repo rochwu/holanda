@@ -3,7 +3,7 @@ import {isNumber, isOp, OpType} from '../../types';
 import {useStore} from '../../state';
 
 import {Operator, OperatorProps} from './Operator';
-import {tokenize, zero} from './tokenize';
+import {tokenizer} from '../../tokenization';
 
 type Props = Omit<OperatorProps, 'op' | 'onClick'>;
 
@@ -34,10 +34,10 @@ export const Decimal: FC<Props> = (props) => {
   });
 
   const click = () => {
-    const token = tokenize(OpType.Decimal);
+    const token = tokenizer.op(OpType.Decimal);
 
     if (pad) {
-      pushNumber(zero());
+      pushNumber(tokenizer.zero());
     }
 
     pushOp(token);

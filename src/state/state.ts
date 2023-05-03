@@ -5,61 +5,30 @@ import {immer} from 'zustand/middleware/immer';
 import {Draft} from 'immer';
 
 import {Token, isDecimal, isOp, isNumber, OpType} from '../types';
+import {tokenize} from '../tokenization';
 
 type State = {
   tokens: Token.Any[];
-  decimal: {
-    length: number;
-  };
   ops: OpType[];
-  numbers: number;
+  integers: number;
+  fractions: number;
 };
 
 const initial: State = {
   tokens: [],
-  decimal: {
-    length: 0,
-  },
   ops: [],
-  numbers: 0,
-};
-
-const clearDecimal = (state: Draft<State>) => {
-  state.decimal.length = 0;
-};
-
-const pop = (state: Draft<State>) => {
-  if (state.tokens.length === 0) {
-    return;
-  }
-
-  const token = state.tokens.pop()!;
-
-  if (isNumber(token)) {
-    state.numbers -= 1;
-
-    if (state.ops.at(-1) === OpType.Decimal) {
-      state.decimal.length -= 1;
-    }
-  }
-
-  if (isOp(token)) {
-    if (isDecimal(token)) {
-      clearDecimal(state);
-    }
-
-    state.ops.pop();
-  }
+  integers: 0,
+  fractions: 0,
 };
 
 export const frontZero = (state: State): boolean => {
   const previous = state.tokens.at(-1);
 
-  return isNumber(previous) && previous.value === 0 && state.numbers === 1;
+  return isNumber(previous) && previous.value === 0 && state.integers === 1;
 };
 
-export const enoughCents = ({decimal}: State): boolean => {
-  return decimal.length === 2;
+export const enoughCents = ({fractions}: State): boolean => {
+  return fractions === 2;
 };
 
 export const enoughDots = (state: State) => {
@@ -76,6 +45,34 @@ export const enoughDots = (state: State) => {
   return false;
 };
 
+const tallyNumeric = (state: Draft<State>, change: number) => {
+  if (state.ops.at(-1) === OpType.Decimal) {
+    state.fractions += change;
+  } else {
+    state.integers += change;
+  }
+};
+
+const pop = (state: Draft<State>) => {
+  if (state.tokens.length === 0) {
+    return;
+  }
+
+  const token = state.tokens.pop()!;
+
+  if (isNumber(token)) {
+    tallyNumeric(state, -1);
+  }
+
+  if (isOp(token)) {
+    if (isDecimal(token)) {
+      state.fractions = 0;
+    }
+
+    state.ops.pop();
+  }
+};
+
 export const useStore = create(
   immer(
     combine(initial, (set, _get, _store) => ({
@@ -90,9 +87,8 @@ export const useStore = create(
           state.tokens.push(token);
 
           state.ops.push(token.op);
-          state.numbers = 0;
-
-          clearDecimal(state);
+          state.integers = 0;
+          state.fractions = 0;
         });
       },
       pushNumber: (token: Token.Number) => {
@@ -103,11 +99,7 @@ export const useStore = create(
 
           state.tokens.push(token);
 
-          state.numbers += 1;
-
-          if (state.ops.at(-1) === OpType.Decimal) {
-            state.decimal.length += 1;
-          }
+          tallyNumeric(state, 1);
         });
       },
       pop: () => {
@@ -115,6 +107,20 @@ export const useStore = create(
       },
       reset: () => {
         set(initial);
+      },
+      set: (value: number = 0) => {
+        set((state) => {
+          const {1: integer, 2: fraction} = value
+            .toString()
+            .match(/^(\d+)(?:\.(\d+))?/)!;
+
+          return {
+            ...initial,
+            tokens: tokenize(value),
+            integers: integer.length,
+            fractions: fraction?.length ?? 0,
+          };
+        });
       },
     })),
   ),
