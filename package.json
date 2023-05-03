@@ -19,14 +19,16 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "gh-pages": "^5.0.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yarn-deduplicate": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "BUILD_PATH='./dist' react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deduplicate": "yarn-deduplicate"
   },
   "browserslist": [
     ">0.2%",
