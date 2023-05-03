@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import {FC} from 'react';
 import {enoughCents, useStore} from '../../state';
 import {Cell} from '../Cell';
-import {Token, Type} from '../../types';
-import {tokenizer} from '../../tokenization';
+import {tokenizer} from '../../tokens';
 
 const Component = styled(Cell)({
   backgroundColor: 'white',

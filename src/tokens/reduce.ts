@@ -1,7 +1,8 @@
 import {evaluate} from 'mathjs';
 
-import {Token, isDecimal, isNumber, isOp, isEnd} from './types';
-import {tokenizer, toMathable} from './tokenization';
+import {Token, isDecimal, isNumber, isOp, isEnd} from '../types';
+import {toMathable} from './tokenization';
+import {tokenizer} from '.';
 
 const total = (value: string): number => {
   try {

@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {reduce} from '../reduce';
+import {reduce, stringify} from '../tokens';
 import {useStore} from '../state';
-import {stringify} from '../tokenization';
-import {Input} from './Input';
+import {Field} from './Field';
 
 const Container = styled.div({
   gridRow: '1 / 3',
@@ -16,8 +15,8 @@ export const Receipt: FC = () => {
 
   return (
     <Container>
-      <Input onChange={change} />
-      <Input value={420.69} onChange={change} />
+      <Field onChange={change} />
+      <Field value={420.69} onChange={change} />
       {stringify(tokens)}
       {JSON.stringify(reduce(tokens), null, 2)}
     </Container>
