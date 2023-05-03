@@ -18,13 +18,15 @@
   "devDependencies": {
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "gh-pages": "^5.0.0",
     "typescript": "5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='./dist' react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d dist"
   },
   "browserslist": [
     ">0.2%",
