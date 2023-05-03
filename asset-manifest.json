@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.f10fcc2d.js",
-    "index.html": "/index.html",
-    "main.f10fcc2d.js.map": "/static/js/main.f10fcc2d.js.map"
+    "main.js": "/nederland/static/js/main.f10fcc2d.js",
+    "index.html": "/nederland/index.html",
+    "main.f10fcc2d.js.map": "/nederland/static/js/main.f10fcc2d.js.map"
   },
   "entrypoints": [
     "static/js/main.f10fcc2d.js"
