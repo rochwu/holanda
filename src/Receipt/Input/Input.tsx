@@ -8,23 +8,23 @@ const Component = styled.div({
 });
 
 type Props = {
-  value: number;
+  value?: number;
 } & Pick<FocusedProps, 'onChange'>;
 
 export const Input: FC<Props> = ({value = 0, onChange}) => {
-  const [hasFocus, setHasFocus] = useState(false);
+  const [hasFocus, setHasFocus] = useState(value === 0);
 
   const focus = () => {
-    setHasFocus(true);
+    // setHasFocus(true);
   };
 
   const blur = () => {
-    setHasFocus(false);
+    // setHasFocus(false);
   };
 
   return (
     <Component tabIndex={0} onFocus={focus} onBlur={blur}>
-      {hasFocus ? <Focused /> : value}
+      {hasFocus ? <Focused value={value} onChange={onChange} /> : value}
     </Component>
   );
 };

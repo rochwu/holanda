@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import {FC} from 'react';
 import {Cell} from '../Cell';
 import {isOp, OpType} from '../../types';
-import {tokenize} from './tokenize';
 import {sign} from '../../sign';
 import {useStore} from '../../state';
 import {colors} from '../colors';
+import {tokenizer} from '../../tokenization';
 
 const color = colors({
   backgroundColor: '#1E4785',
@@ -14,9 +14,11 @@ const color = colors({
 
 const Component = styled(Cell)(color);
 
+type ComponentProps = Omit<Parameters<typeof Component>[0], 'label'>;
+
 export type OperatorProps = {
   op: OpType;
-} & Omit<Parameters<typeof Component>[0], 'label'>;
+} & Partial<ComponentProps>;
 
 export const Operator: FC<OperatorProps> = ({
   op,
@@ -42,7 +44,7 @@ export const Operator: FC<OperatorProps> = ({
   const label = sign(op);
 
   const click = () => {
-    const token = tokenize(op);
+    const token = tokenizer.op(op);
 
     pushOp(token);
   };

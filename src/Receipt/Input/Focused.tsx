@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import {ChangeEvent, FC, FormEventHandler} from 'react';
+import {ChangeEvent, FC, FormEventHandler, useEffect} from 'react';
 import {reduce} from '../../reduce';
 import {useStore} from '../../state';
 
-import {stringify} from '../../tokenization';
+import {stringify, tokenizer} from '../../tokenization';
 
 const Component = styled.div({});
 
@@ -12,9 +12,16 @@ export type FocusedProps = {
   onChange: (value: number) => void;
 };
 
-export const Focused: FC<FocusedProps> = ({onChange}) => {
+export const Focused: FC<FocusedProps> = ({value, onChange}) => {
+  const set = useStore((state) => state.set);
+
   const tokens = useStore((state) => state.tokens);
-  const reduced = reduce(tokens);
+
+  useEffect(() => {
+    set(value);
+  }, []);
+
+  const reduced = tokens.length > 0 ? reduce(tokens) : [tokenizer.zero()];
 
   const change = ({target: {value}}: ChangeEvent<HTMLInputElement>) => {};
 
