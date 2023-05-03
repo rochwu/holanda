@@ -1,25 +1,7 @@
 import {number} from 'mathjs';
-import {math, input} from './sign';
-import {OpType, Token, Type} from './types';
-
-export const tokenizer = {
-  number: (value: number): Token.Number => ({
-    type: Type.Number,
-    value,
-  }),
-  op: (op: OpType): Token.Op => ({
-    type: Type.Op,
-    op,
-  }),
-  decimal: (): Token.Decimal => ({
-    type: Type.Op,
-    op: OpType.Decimal,
-  }),
-  zero: (): Token.Number => tokenizer.number(0),
-  end: (): Token.End => ({
-    type: Type.End,
-  }),
-};
+import {symbols} from '.';
+import {Token, Type} from '../types';
+import {tokenizer} from './tokenizer';
 
 export const toToken = (numeric: string): Token.Any => {
   if (numeric === '.') {
@@ -41,7 +23,7 @@ export const toString = (token: Token.Any) => {
       return token.value.toString();
     }
     case Type.Op: {
-      return input(token.op);
+      return symbols.field(token.op);
     }
   }
 
@@ -58,7 +40,7 @@ export const toMathable = (token: Token.Any) => {
       return token.value.toString();
     }
     case Type.Op: {
-      return math(token.op);
+      return symbols.math(token.op);
     }
   }
 

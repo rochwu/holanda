@@ -11,7 +11,7 @@ type Props = {
   value?: number;
 } & Pick<FocusedProps, 'onChange'>;
 
-export const Input: FC<Props> = ({value = 0, onChange}) => {
+export const Field: FC<Props> = ({value = 0, onChange}) => {
   const [hasFocus, setHasFocus] = useState(value === 0);
 
   const focus = () => {

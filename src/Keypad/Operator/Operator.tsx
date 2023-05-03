@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import {FC} from 'react';
 import {Cell} from '../Cell';
 import {isOp, OpType} from '../../types';
-import {sign} from '../../sign';
+import {symbols, tokenizer} from '../../tokens';
 import {useStore} from '../../state';
 import {colors} from '../colors';
-import {tokenizer} from '../../tokenization';
+import {previousToken} from '../../state/selectors';
 
 const color = colors({
   backgroundColor: '#1E4785',
@@ -27,8 +27,8 @@ export const Operator: FC<OperatorProps> = ({
   ...props
 }) => {
   const pushOp = useStore((state) => state.pushOp);
-  const disabled = useStore(({tokens}) => {
-    const previous = tokens.at(-1);
+  const disabled = useStore((state) => {
+    const previous = previousToken(state);
 
     if (!previous) {
       return true;
@@ -41,7 +41,7 @@ export const Operator: FC<OperatorProps> = ({
     return false;
   });
 
-  const label = sign(op);
+  const label = symbols.label(op);
 
   const click = () => {
     const token = tokenizer.op(op);

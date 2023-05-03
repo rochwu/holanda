@@ -5,44 +5,15 @@ import {immer} from 'zustand/middleware/immer';
 import {Draft} from 'immer';
 
 import {Token, isDecimal, isOp, isNumber, OpType} from '../types';
-import {tokenize} from '../tokenization';
-
-type State = {
-  tokens: Token.Any[];
-  ops: OpType[];
-  integers: number;
-  fractions: number;
-};
+import {tokenize} from '../tokens';
+import {State} from './types';
+import {frontZero} from './selectors';
 
 const initial: State = {
   tokens: [],
   ops: [],
   integers: 0,
   fractions: 0,
-};
-
-export const frontZero = (state: State): boolean => {
-  const previous = state.tokens.at(-1);
-
-  return isNumber(previous) && previous.value === 0 && state.integers === 1;
-};
-
-export const enoughCents = ({fractions}: State): boolean => {
-  return fractions === 2;
-};
-
-export const enoughDots = (state: State) => {
-  if (state.ops.at(-1) === OpType.Decimal) {
-    return true;
-  }
-
-  if (isOp(state.tokens.at(-1))) {
-    if (state.ops.at(-2) === OpType.Decimal) {
-      return true;
-    }
-  }
-
-  return false;
 };
 
 const tallyNumeric = (state: Draft<State>, change: number) => {
@@ -87,7 +58,7 @@ export const useStore = create(
           state.tokens.push(token);
 
           state.ops.push(token.op);
-          state.integers = 0;
+          state.integers = 0; // TODO: there should be a bug somewhere about flipping ops and decimals
           state.fractions = 0;
         });
       },
@@ -109,7 +80,7 @@ export const useStore = create(
         set(initial);
       },
       set: (value: number = 0) => {
-        set((state) => {
+        set(() => {
           const {1: integer, 2: fraction} = value
             .toString()
             .match(/^(\d+)(?:\.(\d+))?/)!;

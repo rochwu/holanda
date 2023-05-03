@@ -1,37 +1,18 @@
 import {FC} from 'react';
-import {isNumber, isOp, OpType} from '../../types';
-import {useStore} from '../../state';
+import {OpType} from '../../types';
+import {enoughDots, shouldPad, useStore} from '../../state';
 
 import {Operator, OperatorProps} from './Operator';
-import {tokenizer} from '../../tokenization';
+import {tokenizer} from '../../tokens';
 
 type Props = Omit<OperatorProps, 'op' | 'onClick'>;
 
 export const Decimal: FC<Props> = (props) => {
-  const disabled = useStore((state) => {
-    if (state.ops.at(-1) === OpType.Decimal) {
-      return true;
-    }
+  const disabled = useStore(enoughDots);
+  const pad = useStore(shouldPad);
 
-    if (isOp(state.tokens.at(-1))) {
-      if (state.ops.at(-2) === OpType.Decimal) {
-        return true;
-      }
-    }
-
-    return false;
-  });
   const pushOp = useStore((state) => state.pushOp);
   const pushNumber = useStore((state) => state.pushNumber);
-  const pad = useStore(({tokens}) => {
-    const previous = tokens.at(-1);
-
-    if (!isNumber(previous)) {
-      return true;
-    }
-
-    return false;
-  });
 
   const click = () => {
     const token = tokenizer.op(OpType.Decimal);

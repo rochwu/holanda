@@ -1,6 +1,6 @@
-import {OpType} from './types';
+import {OpType} from '../types';
 
-export const sign = (op: OpType): string => {
+const label = (op: OpType): string => {
   switch (op) {
     case OpType.Decimal:
       return '\u2219';
@@ -16,15 +16,15 @@ export const sign = (op: OpType): string => {
   }
 };
 
-export const input = (op: OpType): string => {
+const field = (op: OpType): string => {
   if (op === OpType.Decimal) {
     return '.';
   }
 
-  return sign(op);
+  return label(op);
 };
 
-export const math = (op: OpType): string => {
+const math = (op: OpType): string => {
   switch (op) {
     case OpType.Decimal:
       return '.';
@@ -38,4 +38,10 @@ export const math = (op: OpType): string => {
     default:
       return '+';
   }
+};
+
+export const symbols = {
+  label,
+  math,
+  field,
 };

@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import {ChangeEvent, FC, FormEventHandler, useEffect} from 'react';
-import {reduce} from '../../reduce';
+import {reduce, stringify, tokenizer} from '../../tokens';
 import {useStore} from '../../state';
-
-import {stringify, tokenizer} from '../../tokenization';
 
 const Component = styled.div({});
 
