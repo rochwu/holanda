@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {FC, useEffect, useRef} from 'react';
+import {FC, useRef} from 'react';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
 import {useAutoResize} from './useAutoResize';
