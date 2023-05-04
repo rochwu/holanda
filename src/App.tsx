@@ -3,8 +3,10 @@ import {FC, useRef} from 'react';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
 import {useAutoResize} from './useAutoResize';
+import {Debug} from './Debug';
 
 const Container = styled.div({
+  position: 'relative',
   display: 'grid',
   maxWidth: '393px', // iPhone 14 Pro
   maxHeight: '660px',
@@ -15,12 +17,16 @@ const Container = styled.div({
 export const App: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
 
+  useAutoResize();
   useAutoResize({change: ref});
 
   return (
-    <Container ref={ref}>
-      <Receipt />
-      <Keypad />
-    </Container>
+    <>
+      <Debug />
+      <Container ref={ref}>
+        <Receipt />
+        <Keypad />
+      </Container>
+    </>
   );
 };
