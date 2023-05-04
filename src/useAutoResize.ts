@@ -8,8 +8,10 @@ type Props<Change extends Elemental, Watch extends Elemental> = {
 };
 
 const resize = (element: HTMLElement) => () => {
-  element.style.height = `${window.innerHeight}px`;
-  element.style.width = `${window.innerWidth}px`;
+  window.requestAnimationFrame(() => {
+    element.style.height = `${window.innerHeight}px`;
+    element.style.width = `${window.innerWidth}px`;
+  });
 };
 
 const isElement = (elemental: Elemental): elemental is HTMLElement => {
@@ -17,12 +19,8 @@ const isElement = (elemental: Elemental): elemental is HTMLElement => {
 };
 
 const getElement = <T extends Elemental>(
-  elemental?: T,
+  elemental: T,
 ): HTMLElement | undefined => {
-  if (!elemental) {
-    return document.body;
-  }
-
   if (!isElement(elemental)) {
     return elemental.current ?? undefined;
   }
@@ -37,8 +35,8 @@ export const useAutoResize = <
   props: Props<Change, Watch> = {},
 ) => {
   useLayoutEffect(() => {
-    const change = getElement(props.change);
-    const watch = getElement(props.watch);
+    const change = getElement(props.change ?? document.body);
+    const watch = getElement(props.watch ?? document.documentElement);
 
     if (!(change && watch)) {
       return;

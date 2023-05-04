@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, ReactNode} from 'react';
 
 import styled from '@emotion/styled';
 
@@ -8,7 +8,7 @@ const gray = (hex2: string) => {
 
 const Component = styled.button({
   display: 'grid',
-  placeItems: 'center',
+  placeContent: 'center',
   fontSize: '1.5em',
   borderRadius: '8px',
   border: '1px solid black',
@@ -22,13 +22,13 @@ const Component = styled.button({
 
 type Props = {
   onClick: () => void;
-  label: string;
+  children: ReactNode;
 } & Parameters<typeof Component>[0];
 
-export const Cell: FC<Props> = ({label, onClick, ...props}) => {
+export const Cell: FC<Props> = ({children, onClick, ...props}) => {
   return (
     <Component {...props} onClick={onClick}>
-      {label}
+      {children}
     </Component>
   );
 };

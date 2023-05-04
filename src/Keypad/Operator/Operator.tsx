@@ -6,6 +6,7 @@ import {symbols, tokenizer} from '../../tokens';
 import {useStore} from '../../state';
 import {colors} from '../colors';
 import {previousToken} from '../../state/selectors';
+import {Icon} from './Icon';
 
 const color = colors({
   backgroundColor: '#1E4785',
@@ -14,7 +15,7 @@ const color = colors({
 
 const Component = styled(Cell)(color);
 
-type ComponentProps = Omit<Parameters<typeof Component>[0], 'label'>;
+type ComponentProps = Parameters<typeof Component>[0];
 
 export type OperatorProps = {
   op: OpType;
@@ -41,8 +42,6 @@ export const Operator: FC<OperatorProps> = ({
     return false;
   });
 
-  const label = symbols.label(op);
-
   const click = () => {
     const token = tokenizer.op(op);
 
@@ -53,8 +52,9 @@ export const Operator: FC<OperatorProps> = ({
     <Component
       {...props}
       onClick={onClickOverride ?? click}
-      label={label}
       disabled={disabledOverride ?? disabled}
-    />
+    >
+      <Icon op={op} />
+    </Component>
   );
 };

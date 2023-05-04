@@ -58,7 +58,11 @@ export const useStore = create(
           state.tokens.push(token);
 
           state.ops.push(token.op);
-          state.integers = 0; // TODO: there should be a bug somewhere about flipping ops and decimals
+
+          if (!isDecimal(token)) {
+            state.integers = 0;
+          }
+
           state.fractions = 0;
         });
       },

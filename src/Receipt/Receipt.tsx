@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {reduce, stringify} from '../tokens';
+import {stringify} from '../tokens';
 import {useStore} from '../state';
 import {Field} from './Field';
 
@@ -18,7 +18,6 @@ export const Receipt: FC = () => {
       <Field onChange={change} />
       <Field value={420.69} onChange={change} />
       {stringify(tokens)}
-      {JSON.stringify(reduce(tokens), null, 2)}
     </Container>
   );
 };

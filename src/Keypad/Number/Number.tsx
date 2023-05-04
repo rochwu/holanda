@@ -6,6 +6,7 @@ import {tokenizer} from '../../tokens';
 
 const Component = styled(Cell)({
   backgroundColor: 'white',
+  color: 'black',
   ':active:not(:disabled)': {
     backgroundColor: 'lightgray',
   },
@@ -14,10 +15,7 @@ const Component = styled(Cell)({
   },
 });
 
-type ComponentProps = Omit<
-  Parameters<typeof Component>[0],
-  'onClick' | 'label'
->;
+type ComponentProps = Omit<Parameters<typeof Component>[0], 'onClick'>;
 
 export type NumberProps = {
   number: number;
@@ -40,9 +38,10 @@ export const Number: FC<NumberProps> = ({
   return (
     <Component
       onClick={click}
-      label={number.toString()}
       disabled={disabledOverride ?? disabled}
       {...props}
-    />
+    >
+      {number.toString()}
+    </Component>
   );
 };
