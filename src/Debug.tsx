@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {useStore} from './state';
+import {useInputState} from './input-state';
 
 const Container = styled.div({
   position: 'absolute',
@@ -13,10 +13,9 @@ const isDev = !!process.env.NODE_ENV?.includes('dev');
 const Prod: FC = () => null;
 
 const Dev: FC = () => {
-  const state = useStore((state) => state);
+  const state = useInputState((state) => state);
 
   const reset = () => {
-    console.log('reset');
     state.reset();
   };
 

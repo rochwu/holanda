@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 import {Cell} from '../Cell';
-import {isOp, OpType} from '../../types';
-import {symbols, tokenizer} from '../../tokens';
-import {useStore} from '../../state';
+import {OpType} from '../../types';
+import {isOp} from '../../is';
+import {tokenizer} from '../../tokens';
+import {useInputState, previousToken} from '../../input-state';
 import {colors} from '../colors';
-import {previousToken} from '../../state/selectors';
 import {Icon} from './Icon';
 
 const color = colors({
@@ -27,8 +27,8 @@ export const Operator: FC<OperatorProps> = ({
   onClick: onClickOverride,
   ...props
 }) => {
-  const pushOp = useStore((state) => state.pushOp);
-  const disabled = useStore((state) => {
+  const pushOp = useInputState((state) => state.pushOp);
+  const disabled = useInputState((state) => {
     const previous = previousToken(state);
 
     if (!previous) {

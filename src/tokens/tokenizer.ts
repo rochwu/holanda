@@ -9,9 +9,9 @@ export const tokenizer = {
     type: Type.Op,
     op,
   }),
-  decimal: (): Token.Decimal => ({
+  dot: (): Token.Dot => ({
     type: Type.Op,
-    op: OpType.Decimal,
+    op: OpType.Dot,
   }),
   zero: (): Token.Number => tokenizer.number(0),
   end: (): Token.End => ({

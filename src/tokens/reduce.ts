@@ -1,8 +1,9 @@
 import {evaluate} from 'mathjs';
 
-import {Token, isDecimal, isNumber, isOp, isEnd} from '../types';
-import {toMathable} from './tokenization';
-import {tokenizer} from '.';
+import {Token} from '../types';
+import {isDot, isNumber, isOp, isEnd} from '../is';
+import {toMath} from './tokenization';
+import {tokenizer} from './tokenizer';
 
 const total = (value: string): number => {
   try {
@@ -38,16 +39,16 @@ export const reduce = (tokens: Token.Any[]): Token.Any[] => {
       return finish(tokenizer.end());
     }
 
-    if (isOp(token) && !isDecimal(token)) {
+    if (isOp(token) && !isDot(token)) {
       if (op && !remaining) {
         return finish(token);
       }
 
-      op = toMathable(token);
+      op = toMath(token);
     }
 
-    if (isNumber(token) || isDecimal(token)) {
-      const value = toMathable(token);
+    if (isNumber(token) || isDot(token)) {
+      const value = toMath(token);
 
       if (op) {
         right += value;

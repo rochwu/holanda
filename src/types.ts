@@ -10,13 +10,13 @@ export enum OpType {
   Multiply = 'Multiply',
   Subtract = 'Subtract',
   Add = 'Add',
-  Decimal = 'Decimal',
+  Dot = 'Dot',
 }
 
 export declare namespace Token {
-  type Decimal = {
+  type Dot = {
     type: Type.Op;
-    op: OpType.Decimal;
+    op: OpType.Dot;
   };
 
   type Op =
@@ -24,12 +24,19 @@ export declare namespace Token {
         type: Type.Op;
         op: OpType;
       }
-    | Decimal;
+    | Dot;
 
-  type Number = {
+  type Zero = {
     type: Type.Number;
-    value: number;
+    value: 0;
   };
+
+  type Number =
+    | {
+        type: Type.Number;
+        value: number;
+      }
+    | Zero;
 
   type End = {
     type: Type.End;
@@ -37,19 +44,3 @@ export declare namespace Token {
 
   type Any = Op | Number | End;
 }
-
-export const isNumber = (token?: Token.Any): token is Token.Number => {
-  return !!token && token.type === Type.Number;
-};
-
-export const isOp = (token?: Token.Any): token is Token.Op => {
-  return !!token && token.type === Type.Op;
-};
-
-export const isDecimal = (token?: Token.Any): token is Token.Decimal => {
-  return isOp(token) && token.op === OpType.Decimal;
-};
-
-export const isEnd = (token?: Token.Any): token is Token.End => {
-  return !!token && token.type === Type.End;
-};

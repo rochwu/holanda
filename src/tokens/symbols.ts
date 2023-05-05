@@ -2,7 +2,7 @@ import {OpType} from '../types';
 
 const label = (op: OpType): string => {
   switch (op) {
-    case OpType.Decimal:
+    case OpType.Dot:
       return '\u2219';
     case OpType.Divide:
       return '\u00F7';
@@ -17,7 +17,7 @@ const label = (op: OpType): string => {
 };
 
 const field = (op: OpType): string => {
-  if (op === OpType.Decimal) {
+  if (op === OpType.Dot) {
     return '.';
   }
 
@@ -26,7 +26,7 @@ const field = (op: OpType): string => {
 
 const math = (op: OpType): string => {
   switch (op) {
-    case OpType.Decimal:
+    case OpType.Dot:
       return '.';
     case OpType.Divide:
       return '/';
