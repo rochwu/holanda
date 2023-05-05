@@ -1,5 +1,5 @@
 export enum Type {
-  Number = 'Number',
+  Numeric = 'Numeric',
   Op = 'Op',
   Backspace = 'Backspace',
   End = 'End',
@@ -27,13 +27,13 @@ export declare namespace Token {
     | Dot;
 
   type Zero = {
-    type: Type.Number;
+    type: Type.Numeric;
     value: 0;
   };
 
-  type Number =
+  type Numeric =
     | {
-        type: Type.Number;
+        type: Type.Numeric;
         value: number;
       }
     | Zero;
@@ -42,5 +42,5 @@ export declare namespace Token {
     type: Type.End;
   };
 
-  type Any = Op | Number | End;
+  type Any = Op | Numeric | End;
 }

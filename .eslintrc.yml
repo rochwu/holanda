@@ -1,0 +1,42 @@
+root: true
+extends:
+  - eslint:recommended
+  - react-app
+  - prettier
+plugins:
+  - import
+parserOptions:
+  sourceType: module
+env:
+  browser: true
+rules:
+  import/order:
+    - error
+    - groups:
+        - external
+        - internal
+        - parent
+        - sibling
+      newlines-between: always
+      alphabetize:
+        order: asc
+overrides:
+  - files:
+      - src/**/*.ts
+    extends:
+      - plugin:react/recommended
+      - plugin:@typescript-eslint/recommended
+    plugins:
+      - '@typescript-eslint'
+    parser: '@typescript-eslint/parser'
+    rules:
+      '@typescript-eslint/no-non-null-assertion': off
+      '@typescript-eslint/no-namespace': off
+
+ignorePatterns:
+  - dist/*
+settings:
+  react:
+    version: '18'
+globals:
+  process: true

@@ -1,23 +1,25 @@
-import {number as mathJsNumber} from 'mathjs';
-import {symbols} from '.';
+import {isNumeric, isOp} from '../is';
 import {Token} from '../types';
-import {tokenizer} from './tokenizer';
-import {isNumber, isOp} from '../is';
 
-export const toToken = (numeric: string): Token.Any => {
-  if (numeric === '.') {
+import {tokenizer} from './tokenizer';
+
+import {symbols} from '.';
+
+export const toToken = (single: string): Token.Any => {
+  if (single === '.') {
     return tokenizer.dot();
   }
 
-  return tokenizer.number(mathJsNumber(numeric));
+  return tokenizer.numeric(Number(single));
 };
 
 export const tokenize = {
-  number: (value: number): Token.Any[] => Array.from(value.toString(), toToken),
+  numeric: (value: number): Token.Any[] =>
+    Array.from(value.toString(), toToken),
 };
 
 export const toField = (token: Token.Any) => {
-  if (isNumber(token)) {
+  if (isNumeric(token)) {
     return token.value.toString();
   }
 
@@ -29,7 +31,7 @@ export const toField = (token: Token.Any) => {
 };
 
 export const toMath = (token: Token.Any) => {
-  if (isNumber(token)) {
+  if (isNumeric(token)) {
     return token.value.toString();
   }
 

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {stringify} from '../tokens';
+
 import {useInputState} from '../input-state';
+import {stringify} from '../tokens';
+
 import {Field} from './Field';
 
 const Container = styled.div({

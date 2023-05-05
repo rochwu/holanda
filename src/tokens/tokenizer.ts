@@ -1,8 +1,8 @@
 import {OpType, Token, Type} from '../types';
 
 export const tokenizer = {
-  number: (value: number): Token.Number => ({
-    type: Type.Number,
+  numeric: (value: number): Token.Numeric => ({
+    type: Type.Numeric,
     value,
   }),
   op: (op: OpType): Token.Op => ({
@@ -13,7 +13,7 @@ export const tokenizer = {
     type: Type.Op,
     op: OpType.Dot,
   }),
-  zero: (): Token.Number => tokenizer.number(0),
+  zero: (): Token.Numeric => tokenizer.numeric(0),
   end: (): Token.End => ({
     type: Type.End,
   }),

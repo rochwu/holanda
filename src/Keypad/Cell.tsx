@@ -1,6 +1,5 @@
-import {FC, ReactNode} from 'react';
-
 import styled from '@emotion/styled';
+import {FC, ReactNode} from 'react';
 
 const gray = (hex2: string) => {
   return `#${hex2.repeat(3)}`;

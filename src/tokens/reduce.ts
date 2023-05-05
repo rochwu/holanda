@@ -1,7 +1,8 @@
 import {evaluate} from 'mathjs';
 
+import {isDot, isNumeric, isOp, isEnd} from '../is';
 import {Token} from '../types';
-import {isDot, isNumber, isOp, isEnd} from '../is';
+
 import {toMath} from './tokenization';
 import {tokenizer} from './tokenizer';
 
@@ -16,16 +17,16 @@ const total = (value: string): number => {
 };
 
 export const reduce = (tokens: Token.Any[]): Token.Any[] => {
-  let left: string = '';
-  let op: string = '';
-  let right: string = '';
+  let left = '';
+  let op = '';
+  let right = '';
   let remaining: Token.Op | undefined;
 
   const finish = (remaining: Token.Op | Token.End) => {
     const cutoff = tokens.indexOf(remaining);
 
     const value = total(`${left}${op}${right}`);
-    const expression = tokenizer.number(value);
+    const expression = tokenizer.numeric(value);
 
     const next: Token.Any[] = isEnd(remaining)
       ? [expression]
@@ -47,7 +48,7 @@ export const reduce = (tokens: Token.Any[]): Token.Any[] => {
       op = toMath(token);
     }
 
-    if (isNumber(token) || isDot(token)) {
+    if (isNumeric(token) || isDot(token)) {
       const value = toMath(token);
 
       if (op) {

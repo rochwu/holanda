@@ -1,6 +1,7 @@
 import {FC} from 'react';
-import {OpType} from '../../types';
+
 import {enoughDots, useInputState} from '../../input-state';
+import {OpType} from '../../types';
 
 import {Operator, OperatorProps} from './Operator';
 

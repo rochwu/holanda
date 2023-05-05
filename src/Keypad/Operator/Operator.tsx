@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {Cell} from '../Cell';
-import {OpType} from '../../types';
+
+import {useInputState, previousToken} from '../../input-state';
 import {isOp} from '../../is';
 import {tokenizer} from '../../tokens';
-import {useInputState, previousToken} from '../../input-state';
+import {OpType} from '../../types';
+import {Cell} from '../Cell';
 import {colors} from '../colors';
+
 import {Icon} from './Icon';
 
 const color = colors({
