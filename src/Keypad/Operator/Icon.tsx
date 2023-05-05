@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {OpType} from '../../types';
 
-import {FiDelete, FiDivide, FiX, FiPlus, FiMinus} from 'react-icons/fi';
+import {FiDivide, FiX, FiPlus, FiMinus} from 'react-icons/fi';
 import {RxDot} from 'react-icons/rx';
 
 type Props = {
@@ -18,7 +18,7 @@ export const Icon: FC<Props> = ({op}) => {
       return <FiX />;
     case OpType.Divide:
       return <FiDivide />;
-    case OpType.Decimal:
+    case OpType.Dot:
     default:
       return <RxDot />;
   }

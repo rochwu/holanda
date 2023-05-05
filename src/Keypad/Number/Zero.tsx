@@ -1,12 +1,12 @@
 import {FC} from 'react';
-import {enoughCents, frontZero, useStore} from '../../state';
+import {enoughCents, frontZero, useInputState} from '../../input-state';
 
 import {Number, NumberProps} from './Number';
 
 type Props = Omit<NumberProps, 'number'>;
 
 export const Zero: FC<Props> = ({...props}) => {
-  const disabled = useStore((state) => {
+  const disabled = useInputState((state) => {
     return frontZero(state) || enoughCents(state);
   });
 

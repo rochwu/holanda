@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {Operator, Decimal} from './Operator';
+import {Operator, Dot} from './Operator';
 import {Number, Zero} from './Number';
 import {OpType} from '../types';
 import {Backspace} from './Backspace';
@@ -33,7 +33,7 @@ export const Keypad: FC = () => {
       <Number number={8} />
       <Number number={9} />
       <Operator op={OpType.Subtract} />
-      <Decimal />
+      <Dot />
       <Zero />
       <Backspace />
       <Operator op={OpType.Add} />

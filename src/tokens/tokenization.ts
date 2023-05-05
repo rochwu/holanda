@@ -1,48 +1,46 @@
-import {number} from 'mathjs';
+import {number as mathJsNumber} from 'mathjs';
 import {symbols} from '.';
-import {Token, Type} from '../types';
+import {Token} from '../types';
 import {tokenizer} from './tokenizer';
+import {isNumber, isOp} from '../is';
 
 export const toToken = (numeric: string): Token.Any => {
   if (numeric === '.') {
-    return tokenizer.decimal();
+    return tokenizer.dot();
   }
 
-  return tokenizer.number(number(numeric));
+  return tokenizer.number(mathJsNumber(numeric));
 };
 
-export const tokenize = (value: number): Token.Any[] => {
-  const stringified = value.toString().split('');
-
-  return stringified.map(toToken);
+export const tokenize = {
+  number: (value: number): Token.Any[] => Array.from(value.toString(), toToken),
 };
 
-export const toString = (token: Token.Any) => {
-  switch (token.type) {
-    case Type.Number: {
-      return token.value.toString();
-    }
-    case Type.Op: {
-      return symbols.field(token.op);
-    }
+export const toField = (token: Token.Any) => {
+  if (isNumber(token)) {
+    return token.value.toString();
+  }
+
+  if (isOp(token)) {
+    return symbols.field(token.op);
   }
 
   return '';
 };
 
-export const stringify = (tokens: Token.Any[]) => {
-  return tokens.map(toString).join('');
-};
+export const toMath = (token: Token.Any) => {
+  if (isNumber(token)) {
+    return token.value.toString();
+  }
 
-export const toMathable = (token: Token.Any) => {
-  switch (token.type) {
-    case Type.Number: {
-      return token.value.toString();
-    }
-    case Type.Op: {
-      return symbols.math(token.op);
-    }
+  if (isOp(token)) {
+    return symbols.math(token.op);
   }
 
   return '';
+};
+
+export const stringify = {
+  math: (tokens: Token.Any[]) => tokens.map(toMath).join(''),
+  field: (tokens: Token.Any[]) => tokens.map(toField).join(''),
 };

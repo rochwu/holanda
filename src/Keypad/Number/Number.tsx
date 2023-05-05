@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {enoughCents, useStore} from '../../state';
+import {enoughCents, useInputState} from '../../input-state';
 import {Cell} from '../Cell';
 import {tokenizer} from '../../tokens';
 
@@ -26,8 +26,8 @@ export const Number: FC<NumberProps> = ({
   disabled: disabledOverride,
   ...props
 }) => {
-  const pushNumber = useStore((state) => state.pushNumber);
-  const disabled = useStore(enoughCents);
+  const pushNumber = useInputState((state) => state.pushNumber);
+  const disabled = useInputState(enoughCents);
 
   const click = () => {
     const token = tokenizer.number(number);
