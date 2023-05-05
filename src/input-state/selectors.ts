@@ -1,4 +1,4 @@
-import {isDot, isNumber, isOp, isZero} from '../is';
+import {isDot, isNumeric, isOp, isZero} from '../is';
 import {stringify} from '../tokens';
 
 import type {State} from './state';
@@ -30,7 +30,7 @@ export const frontZero = (state: State): boolean => {
     return false;
   }
 
-  return !isNumber(beforePrevious);
+  return !isNumeric(beforePrevious);
 };
 
 export const enoughCents = (state: State): boolean => {

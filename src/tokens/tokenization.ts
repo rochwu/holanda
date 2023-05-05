@@ -1,4 +1,4 @@
-import {isNumber, isOp} from '../is';
+import {isNumeric, isOp} from '../is';
 import {Token} from '../types';
 
 import {tokenizer} from './tokenizer';
@@ -10,15 +10,16 @@ export const toToken = (single: string): Token.Any => {
     return tokenizer.dot();
   }
 
-  return tokenizer.number(Number(single));
+  return tokenizer.numeric(Number(single));
 };
 
 export const tokenize = {
-  number: (value: number): Token.Any[] => Array.from(value.toString(), toToken),
+  numeric: (value: number): Token.Any[] =>
+    Array.from(value.toString(), toToken),
 };
 
 export const toField = (token: Token.Any) => {
-  if (isNumber(token)) {
+  if (isNumeric(token)) {
     return token.value.toString();
   }
 
@@ -30,7 +31,7 @@ export const toField = (token: Token.Any) => {
 };
 
 export const toMath = (token: Token.Any) => {
-  if (isNumber(token)) {
+  if (isNumeric(token)) {
     return token.value.toString();
   }
 

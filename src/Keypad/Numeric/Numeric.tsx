@@ -21,19 +21,19 @@ console.log('wtf');
 type ComponentProps = Omit<Parameters<typeof Component>[0], 'onClick'>;
 
 export type NumberProps = {
-  number: number;
+  value: number;
 } & Partial<ComponentProps>;
 
-export const Number: FC<NumberProps> = ({
-  number,
+export const Numeric: FC<NumberProps> = ({
+  value,
   disabled: disabledOverride,
   ...props
 }) => {
-  const pushNumber = useInputState((state) => state.pushNumber);
+  const pushNumber = useInputState((state) => state.pushNumeric);
   const disabled = useInputState(enoughCents);
 
   const click = () => {
-    const token = tokenizer.number(number);
+    const token = tokenizer.numeric(value);
 
     pushNumber(token);
   };
@@ -44,7 +44,7 @@ export const Number: FC<NumberProps> = ({
       disabled={disabledOverride ?? disabled}
       {...props}
     >
-      {number.toString()}
+      {value.toString()}
     </Component>
   );
 };

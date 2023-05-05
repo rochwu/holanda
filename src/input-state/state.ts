@@ -3,7 +3,7 @@ import {create} from 'zustand';
 import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
-import {isNumber, isOp} from '../is';
+import {isNumeric, isOp} from '../is';
 import {tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
@@ -21,7 +21,7 @@ const pop = (state: Draft<State>) => {
   state.tokens.pop()!;
 };
 
-const pushNumber = (token: Token.Numeric) => (state: Draft<State>) => {
+const pushNumeric = (token: Token.Numeric) => (state: Draft<State>) => {
   if (frontZero(state)) {
     pop(state);
   }
@@ -48,8 +48,8 @@ export const useInputState = create(
 
           const previous = previousToken(state);
 
-          if (!isNumber(previous)) {
-            pushNumber(tokenizer.zero())(state);
+          if (!isNumeric(previous)) {
+            pushNumeric(tokenizer.zero())(state);
           }
 
           state.tokens.push(dot);
@@ -58,8 +58,8 @@ export const useInputState = create(
       pushOp: (token: Token.Op) => {
         set(pushOp(token));
       },
-      pushNumber: (token: Token.Numeric) => {
-        set(pushNumber(token));
+      pushNumeric: (token: Token.Numeric) => {
+        set(pushNumeric(token));
       },
       pop: () => {
         set(pop);
@@ -71,7 +71,7 @@ export const useInputState = create(
         set(() => {
           return {
             ...initial,
-            tokens: tokenize.number(value),
+            tokens: tokenize.numeric(value),
           };
         });
       },
