@@ -3,11 +3,9 @@ import {FC} from 'react';
 import {Cell} from '../Cell';
 import {OpType} from '../../types';
 import {isOp} from '../../is';
-
 import {tokenizer} from '../../tokens';
-import {useInputState} from '../../input-state';
+import {useInputState, previousToken} from '../../input-state';
 import {colors} from '../colors';
-import {previousToken} from '../../input-state/selectors';
 import {Icon} from './Icon';
 
 const color = colors({
