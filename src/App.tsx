@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import {FC, useRef} from 'react';
+
+import {Debug} from './Debug';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
 import {useAutoResize} from './useAutoResize';
-import {Debug} from './Debug';
 
 const Container = styled.div({
   position: 'relative',

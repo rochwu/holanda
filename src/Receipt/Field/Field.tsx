@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {FC, useState} from 'react';
+
 import {Focused, FocusedProps} from './Focused';
 
 const Component = styled.div({
@@ -12,7 +13,7 @@ type Props = {
 } & Pick<FocusedProps, 'onChange'>;
 
 export const Field: FC<Props> = ({value = 0, onChange}) => {
-  const [hasFocus, setHasFocus] = useState(value === 0);
+  const [hasFocus] = useState(value === 0);
 
   const focus = () => {
     // setHasFocus(true);

@@ -31,7 +31,7 @@ export declare namespace Token {
     value: 0;
   };
 
-  type Number =
+  type Numeric =
     | {
         type: Type.Number;
         value: number;
@@ -42,5 +42,5 @@ export declare namespace Token {
     type: Type.End;
   };
 
-  type Any = Op | Number | End;
+  type Any = Op | Numeric | End;
 }

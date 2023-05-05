@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {Operator, Dot} from './Operator';
-import {Number, Zero} from './Number';
+
 import {OpType} from '../types';
+
 import {Backspace} from './Backspace';
+import {Number, Zero} from './Number';
+import {Operator, Dot} from './Operator';
 
 const gap = '2px';
 

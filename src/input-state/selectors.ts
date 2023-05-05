@@ -1,12 +1,13 @@
 import {isDot, isNumber, isOp, isZero} from '../is';
 import {stringify} from '../tokens';
+
 import type {State} from './state';
 
-export const previousToken = (state: State, look: number = 1) => {
+export const previousToken = (state: State, look = 1) => {
   return state.tokens.at(look * -1);
 };
 
-export const previousOp = (state: State, look: number = 1) => {
+export const previousOp = (state: State, look = 1) => {
   const ops = state.tokens.filter(isOp);
 
   return ops.at(look * -1);

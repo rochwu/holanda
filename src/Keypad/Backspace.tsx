@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
+import {FiDelete} from 'react-icons/fi';
+
 import {useInputState} from '../input-state';
+
 import {Cell} from './Cell';
 import {colors} from './colors';
-import {FiDelete} from 'react-icons/fi';
 
 const color = colors({
   backgroundColor: '#A91F32',

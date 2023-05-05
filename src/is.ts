@@ -1,6 +1,6 @@
 import {OpType, Token, Type} from './types';
 
-export const isNumber = (token?: Token.Any): token is Token.Number => {
+export const isNumber = (token?: Token.Any): token is Token.Numeric => {
   return !!token && token.type === Type.Number;
 };
 

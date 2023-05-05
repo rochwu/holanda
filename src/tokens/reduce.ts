@@ -1,7 +1,8 @@
 import {evaluate} from 'mathjs';
 
-import {Token} from '../types';
 import {isDot, isNumber, isOp, isEnd} from '../is';
+import {Token} from '../types';
+
 import {toMath} from './tokenization';
 import {tokenizer} from './tokenizer';
 
@@ -16,9 +17,9 @@ const total = (value: string): number => {
 };
 
 export const reduce = (tokens: Token.Any[]): Token.Any[] => {
-  let left: string = '';
-  let op: string = '';
-  let right: string = '';
+  let left = '';
+  let op = '';
+  let right = '';
   let remaining: Token.Op | undefined;
 
   const finish = (remaining: Token.Op | Token.End) => {

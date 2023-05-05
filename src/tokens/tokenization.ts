@@ -1,15 +1,16 @@
-import {number as mathJsNumber} from 'mathjs';
-import {symbols} from '.';
-import {Token} from '../types';
-import {tokenizer} from './tokenizer';
 import {isNumber, isOp} from '../is';
+import {Token} from '../types';
 
-export const toToken = (numeric: string): Token.Any => {
-  if (numeric === '.') {
+import {tokenizer} from './tokenizer';
+
+import {symbols} from '.';
+
+export const toToken = (single: string): Token.Any => {
+  if (single === '.') {
     return tokenizer.dot();
   }
 
-  return tokenizer.number(mathJsNumber(numeric));
+  return tokenizer.number(Number(single));
 };
 
 export const tokenize = {

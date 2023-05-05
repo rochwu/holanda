@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import {OpType} from '../../types';
-
 import {FiDivide, FiX, FiPlus, FiMinus} from 'react-icons/fi';
 import {RxDot} from 'react-icons/rx';
+
+import {OpType} from '../../types';
 
 type Props = {
   op: OpType;

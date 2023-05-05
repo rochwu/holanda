@@ -1,4 +1,5 @@
 import {FC} from 'react';
+
 import {enoughCents, frontZero, useInputState} from '../../input-state';
 
 import {Number, NumberProps} from './Number';

@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
+
 import {enoughCents, useInputState} from '../../input-state';
-import {Cell} from '../Cell';
 import {tokenizer} from '../../tokens';
+import {Cell} from '../Cell';
 
 const Component = styled(Cell)({
   backgroundColor: 'white',
@@ -14,6 +15,8 @@ const Component = styled(Cell)({
     filter: 'brightness(75%)',
   },
 });
+
+console.log('wtf');
 
 type ComponentProps = Omit<Parameters<typeof Component>[0], 'onClick'>;
 
