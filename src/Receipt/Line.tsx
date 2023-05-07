@@ -1,25 +1,66 @@
 import styled from '@emotion/styled';
 import {FC, ReactNode} from 'react';
 
-import {Field} from './Field';
+import {attributes} from '../attributes';
+import {color} from '../styles';
+
 import {Label} from './Label';
+
+const Container = styled.div<{divide?: boolean}>(
+  {
+    display: 'flex',
+    gap: '4px',
+    justifyContent: 'end',
+    position: 'relative',
+  },
+  ({divide}) => {
+    if (divide) {
+      return {
+        borderTop: '1px solid black',
+      };
+    }
+  },
+);
 
 type Props = {
   label?: string;
-  children?: ReactNode; // TODO: Not optional
-};
+  children: ReactNode;
+  heading?: string;
+} & Parameters<typeof Container>[0];
 
-const Container = styled.div({
-  display: 'flex',
-  gap: '4px',
-  justifyContent: 'end',
-});
+const Heading = styled.div(
+  color.buttons.positive,
+  {
+    position: 'absolute',
+    top: 0,
+    textTransform: 'uppercase',
+    padding: '2px 8px',
+    fontSize: '14px',
+  },
+  ({theme}) => {
+    if (theme.lefty) {
+      return {
+        right: 0,
+      };
+    }
 
-export const Line: FC<Props> = ({label, children}) => {
+    return {
+      left: 0,
+    };
+  },
+);
+
+export const Line: FC<Props> = ({
+  label,
+  children,
+  heading,
+  ...elementProps
+}) => {
   return (
-    <Container>
+    <Container {...elementProps}>
+      {heading && <Heading {...attributes.text}>{heading}</Heading>}
       {label && <Label>{label}</Label>}
-      {children ?? <Field />}
+      {children}
     </Container>
   );
 };

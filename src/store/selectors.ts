@@ -42,10 +42,3 @@ export const enoughDots = (state: State) => {
 
   return isDot(previous);
 };
-
-export const lineTotal = (state: State): number => {
-  const subtotal = state.byId['subtotal'] || 0;
-  const tax = state.byId['tax'] || 0;
-
-  return subtotal + tax;
-};

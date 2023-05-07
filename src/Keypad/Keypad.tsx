@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
+import {attributes} from '../attributes';
 import {spacing} from '../styles';
 import {OpType} from '../types';
 
@@ -27,7 +28,7 @@ export const Keypad: FC = () => {
   return (
     <Container>
       <Flip />
-      <Keys dir="ltr">
+      <Keys {...attributes.text}>
         <Numeric value={1} />
         <Numeric value={2} />
         <Numeric value={3} />

@@ -9,7 +9,8 @@ import {precision} from '../precision';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
-import {frontZero, lineTotal, previousToken} from './selectors';
+import {Ids} from './ids';
+import {frontZero, previousToken} from './selectors';
 
 export type Id = string;
 
@@ -24,7 +25,7 @@ export type State = {
 const initial: State = {
   tokens: [],
   byId: {},
-  id: 'subtotal',
+  id: Ids.Subtotal,
   lefty: false,
   tips: undefined, // reset wasn't working without this
 };
@@ -158,9 +159,13 @@ export const useStore = create(
        */
       tip: (percent: number) => {
         set((state) => {
-          const total = precision(lineTotal(state) * (percent / 100 + 1));
+          if (percent) {
+            const total = precision(
+              state.byId[Ids.LineTotal] * (percent / 100 + 1),
+            );
 
-          state.byId['total'] = total;
+            state.byId[Ids.Total] = total;
+          }
         });
       },
     })),
