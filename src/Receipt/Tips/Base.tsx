@@ -2,6 +2,7 @@ import {FC, useEffect} from 'react';
 
 import {precision} from '../../precision';
 import {Id, Ids, useStore, useValue} from '../../store';
+import {spacing} from '../../styles';
 import {Field} from '../Field';
 import {ReadOnly} from '../Field';
 import {Radio} from '../Radio';
@@ -37,9 +38,9 @@ export const Base: FC<Props> = ({
     <>
       <Radio onClick={select} selected={selected} />
       {readOnly ? (
-        <ReadOnly onClick={select} value={value} />
+        <ReadOnly onClick={select} value={value} width={spacing.shortInput} />
       ) : (
-        <Field identifier={id} onClick={select} />
+        <Field identifier={id} onClick={select} width={spacing.shortInput} />
       )}
     </>
   );

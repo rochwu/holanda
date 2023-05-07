@@ -1,7 +1,8 @@
 import {FC, useCallback, useEffect, useId} from 'react';
 
 import {Ids, useValue, useStore} from '../../store';
-import {Field, Type} from '../Field';
+import {spacing} from '../../styles';
+import {Field} from '../Field';
 import {Line} from '../Line';
 
 import {Base} from './Base';
@@ -36,7 +37,11 @@ export const CustomTips: FC<Props> = () => {
 
   return (
     <Line>
-      <Field identifier={percentId} type={Type.Percent} onClick={select} />
+      <Field
+        identifier={percentId}
+        onClick={select}
+        width={spacing.shortInput}
+      />
       <Base identifier={numberId} select={select} percent={percent} />
     </Line>
   );

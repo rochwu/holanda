@@ -4,34 +4,64 @@ const gray = (hex2: string) => {
   return `#${hex2.repeat(3)}`;
 };
 
-export const spacing = {
-  gap: '2px',
-  borderRadius: '8px',
-  inputPadding: '4px',
+const pixels = {
+  gap: 2,
+  radioSize: 44,
+  longInput: 170.5,
+  inputPadding: 4,
+  inputGap: 4,
 };
 
-const positive = '#1E4785';
-const negative = '#A91F32';
+export const spacing = {
+  gap: `${pixels.gap}px`,
+  borderRadius: '8px',
+  radioSize: '44px',
+  inputGap: `${pixels.inputGap}px`,
+  inputPadding: `${pixels.inputPadding}px`,
+  longInput: `${pixels.longInput}px`,
+  shortInput: `${pixels.longInput - pixels.inputGap - pixels.radioSize}px`,
+};
+
+// nederland
+// const palette = {
+//   positive: '#1E4785',
+//   negative: '#A91F32',
+//   light: 'white',
+//   dark: 'black',
+//   off: gray('DD'),
+//   background: gray('F3'),
+// };
+
+// no negative
+const palette = {
+  positive: '#1E4785',
+  negative: '#1E4785',
+  light: 'white',
+  dark: 'black',
+  off: gray('DD'),
+  background: gray('F3'),
+};
 
 export const color = {
-  positive,
-  negative,
+  ...palette,
+  background: palette.background,
+  dev: palette.light,
   disabled: {
-    color: gray('C1'),
-    backgroundColor: gray('DD'),
+    color: palette.dark,
+    backgroundColor: palette.off,
   },
   buttons: {
     number: {
-      color: 'black',
-      backgroundColor: 'white',
+      color: palette.dark,
+      backgroundColor: palette.light,
     },
     positive: {
-      color: 'white',
-      backgroundColor: positive,
+      color: palette.light,
+      backgroundColor: palette.positive,
     },
     negative: {
-      color: 'white',
-      backgroundColor: negative,
+      color: palette.light,
+      backgroundColor: palette.negative,
     },
   },
 };

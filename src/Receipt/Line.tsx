@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import {FC, ReactNode} from 'react';
 
 import {attributes} from '../attributes';
-import {color} from '../styles';
+import {color, spacing} from '../styles';
 
 import {Label} from './Label';
 
 const Container = styled.div<{divide?: boolean}>(
   {
     display: 'flex',
-    gap: '4px',
+    gap: spacing.inputGap,
     justifyContent: 'end',
     position: 'relative',
   },
@@ -34,7 +34,7 @@ const Heading = styled.div(
     position: 'absolute',
     top: 0,
     textTransform: 'uppercase',
-    padding: '2px 8px',
+    padding: '4px 16px',
     fontSize: '14px',
   },
   ({theme}) => {
