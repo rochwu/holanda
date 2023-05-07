@@ -8,7 +8,7 @@ import {isNumeric, isOp} from '../is';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
-import {frontZero, previousToken} from './selectors';
+import {frontZero, lineTotal, previousToken} from './selectors';
 
 export type Id = string;
 
@@ -25,6 +25,7 @@ const initial: State = {
   byId: {},
   id: 'subtotal',
   lefty: false,
+  tips: undefined, // reset wasn't working without this
 };
 
 const pop = (state: Draft<State>) => {
@@ -74,7 +75,7 @@ const tally = (state: Draft<State>) => {
 
 export const useStore = create(
   immer(
-    combine(initial, (set, get) => ({
+    combine(initial, (set, get, store) => ({
       pushDot: () => {
         set((state) => {
           const dot = tokenizer.dot();
@@ -118,12 +119,24 @@ export const useStore = create(
           state.id = id;
         });
       },
+      clear: () => {
+        set((state) => {
+          state.tokens = [];
+        });
+      },
       tally: () => {
         set(tally);
       },
       flip: () => {
         set((state) => {
           state.lefty = !state.lefty;
+        });
+      },
+      tip: (id: Id) => (tips: number) => {
+        set((state) => {
+          state.tips = id;
+
+          state.byId['total'] = lineTotal(state) + tips;
         });
       },
     })),
