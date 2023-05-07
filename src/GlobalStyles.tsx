@@ -1,18 +1,5 @@
 import {Global, css} from '@emotion/react';
-import styled from '@emotion/styled';
 import {FC} from 'react';
-
-export const Body = styled.div({
-  display: 'grid',
-  placeContent: 'center',
-  position: 'relative',
-  backgroundColor: '#ffe0b0',
-  fontFamily: '"Varela Round", sans-serif',
-
-  button: {
-    fontFamily: '"Varela Round", sans-serif',
-  },
-});
 
 const styles = css({
   body: {
@@ -20,8 +7,9 @@ const styles = css({
     placeContent: 'center',
     position: 'relative',
     backgroundColor: '#ffe0b0',
-    overflow: 'hidden',
-    margin: 0,
+    overflow: 'hidden', // stops iOS safari from swiping vertically
+    userSelect: 'none', // iOS sucks when double click selects shit
+    margin: 0, // no user agent
   },
 
   'body, button': {
