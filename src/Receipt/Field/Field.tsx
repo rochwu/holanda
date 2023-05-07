@@ -1,31 +1,42 @@
-import styled from '@emotion/styled';
-import {FC, useState} from 'react';
+import {FC, useCallback, useId} from 'react';
 
-import {Focused, FocusedProps} from './Focused';
+import {attributes} from '../../attributes';
+import {Id, useStore} from '../../store';
+import {reduce, stringify} from '../../tokens';
 
-const Component = styled.div({
-  padding: '1em',
-  border: '1px solid black',
-});
+import {Base} from './Base';
 
 type Props = {
-  value?: number;
-} & Pick<FocusedProps, 'onChange'>;
+  identifier?: Id;
+};
 
-export const Field: FC<Props> = ({value = 0, onChange}) => {
-  const [hasFocus] = useState(value === 0);
+const Editing: FC = () => {
+  const tokens = useStore((state) => state.tokens);
 
-  const focus = () => {
-    // setHasFocus(true);
-  };
+  return <>{stringify.field(reduce(tokens)) || 0}</>;
+};
 
-  const blur = () => {
-    // setHasFocus(false);
+export const Field: FC<Props> = ({identifier}) => {
+  const defaultId = useId();
+  const id: Id = identifier ?? defaultId;
+
+  const value: number | undefined = useStore(
+    useCallback((state) => state.byId[id] || 0, [id]),
+  );
+  const select = useStore(useCallback((state) => state.select(id), [id]));
+  const selected = useStore((state) => state.id === id);
+
+  const click = () => {
+    if (selected) {
+      return;
+    }
+
+    select();
   };
 
   return (
-    <Component tabIndex={0} onFocus={focus} onBlur={blur}>
-      {hasFocus ? <Focused value={value} onChange={onChange} /> : value}
-    </Component>
+    <Base selected={selected} onClick={click} {...attributes.input}>
+      {selected ? <Editing /> : value}
+    </Base>
   );
 };

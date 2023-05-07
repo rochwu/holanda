@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
-import {enoughCents, useInputState} from '../../input-state';
+import {enoughCents, useStore} from '../../store';
 import {tokenizer} from '../../tokens';
 import {Cell} from '../Cell';
 
@@ -16,8 +16,6 @@ const Component = styled(Cell)({
   },
 });
 
-console.log('wtf');
-
 type ComponentProps = Omit<Parameters<typeof Component>[0], 'onClick'>;
 
 export type NumericProps = {
@@ -29,8 +27,8 @@ export const Numeric: FC<NumericProps> = ({
   disabled: disabledOverride,
   ...props
 }) => {
-  const pushNumeric = useInputState((state) => state.pushNumeric);
-  const disabled = useInputState(enoughCents);
+  const pushNumeric = useStore((state) => state.pushNumeric);
+  const disabled = useStore(enoughCents);
 
   const click = () => {
     const token = tokenizer.numeric(value);

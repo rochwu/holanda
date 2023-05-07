@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
-import {useInputState, previousToken} from '../../input-state';
 import {isOp} from '../../is';
+import {useStore, previousToken} from '../../store';
 import {tokenizer} from '../../tokens';
 import {OpType} from '../../types';
 import {Cell} from '../Cell';
@@ -29,8 +29,8 @@ export const Operator: FC<OperatorProps> = ({
   onClick: onClickOverride,
   ...props
 }) => {
-  const pushOp = useInputState((state) => state.pushOp);
-  const disabled = useInputState((state) => {
+  const pushOp = useStore((state) => state.pushOp);
+  const disabled = useStore((state) => {
     const previous = previousToken(state);
 
     if (!previous) {

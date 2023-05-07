@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
-import {FC, useRef} from 'react';
+import {FC, MouseEventHandler, useRef} from 'react';
 
 import {Debug} from './Debug';
+import {GlobalStyles} from './GlobalStyles';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
+import {Theming} from './Theming';
+import {attributes} from './attributes';
+import {useStore} from './store';
 import {useAutoResize} from './useAutoResize';
 
 const Container = styled.div({
@@ -16,18 +20,30 @@ const Container = styled.div({
 });
 
 export const App: FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
 
   useAutoResize();
-  useAutoResize({change: ref});
+  useAutoResize({change: content});
+
+  const tally = useStore((state) => state.tally);
+
+  const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
+    if (target && attributes.read(target as HTMLElement) === null) {
+      console.log('tally');
+      tally();
+    }
+  };
 
   return (
     <>
+      <GlobalStyles />
       <Debug />
-      <Container ref={ref}>
-        <Receipt />
-        <Keypad />
-      </Container>
+      <Theming>
+        <Container ref={content} onClick={click}>
+          <Receipt />
+          <Keypad />
+        </Container>
+      </Theming>
     </>
   );
 };

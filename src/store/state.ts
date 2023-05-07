@@ -1,24 +1,34 @@
 import {Draft} from 'immer';
+import {evaluate} from 'mathjs';
 import {create} from 'zustand';
 import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
 import {isNumeric, isOp} from '../is';
-import {tokenize, tokenizer} from '../tokens';
+import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
 import {frontZero, previousToken} from './selectors';
 
+export type Id = string;
+
 export type State = {
   tokens: Token.Any[];
+  byId: Record<Id, number>;
+  id: Id;
+  tips?: Id;
+  lefty: boolean;
 };
 
 const initial: State = {
   tokens: [],
+  byId: {},
+  id: 'subtotal',
+  lefty: false,
 };
 
 const pop = (state: Draft<State>) => {
-  state.tokens.pop()!;
+  state.tokens.pop();
 };
 
 const pushNumeric = (token: Token.Numeric) => (state: Draft<State>) => {
@@ -39,9 +49,32 @@ const pushOp = (token: Token.Op) => (state: Draft<State>) => {
   state.tokens.push(token);
 };
 
-export const useInputState = create(
+const tally = (state: Draft<State>) => {
+  const {id, tokens} = state;
+
+  if (id === undefined) {
+    return;
+  }
+
+  const previous = state.byId[id];
+
+  const raw = tokens.length > 0 ? stringify.math(reduce(tokens)) : undefined;
+
+  let total = 0;
+  if (raw) {
+    total = evaluate(raw.replace(/\D+$/, ''));
+  }
+
+  if (previous === undefined && total === 0) {
+    return;
+  }
+
+  state.byId[id] = total;
+};
+
+export const useStore = create(
   immer(
-    combine(initial, (set) => ({
+    combine(initial, (set, get) => ({
       pushDot: () => {
         set((state) => {
           const dot = tokenizer.dot();
@@ -67,12 +100,30 @@ export const useInputState = create(
       reset: () => {
         set(initial);
       },
-      set: (value = 0) => {
-        set(() => {
-          return {
-            ...initial,
-            tokens: tokenize.numeric(value),
-          };
+      /**
+       * Basically a blur then a focus
+       */
+      select: (id: Id) => () => {
+        set((state) => {
+          tally(state);
+
+          const saved = state.byId[id];
+
+          if (saved) {
+            state.tokens = tokenize.numeric(saved);
+          } else {
+            state.tokens = initial.tokens;
+          }
+
+          state.id = id;
+        });
+      },
+      tally: () => {
+        set(tally);
+      },
+      flip: () => {
+        set((state) => {
+          state.lefty = !state.lefty;
         });
       },
     })),

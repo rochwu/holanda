@@ -1,6 +1,6 @@
 import {FC} from 'react';
 
-import {enoughDots, useInputState} from '../../input-state';
+import {enoughDots, useStore} from '../../store';
 import {OpType} from '../../types';
 
 import {Operator, OperatorProps} from './Operator';
@@ -8,9 +8,9 @@ import {Operator, OperatorProps} from './Operator';
 type Props = Omit<OperatorProps, 'op' | 'onClick'>;
 
 export const Dot: FC<Props> = (props) => {
-  const disabled = useInputState(enoughDots);
+  const disabled = useStore(enoughDots);
 
-  const pushDot = useInputState((state) => state.pushDot);
+  const pushDot = useStore((state) => state.pushDot);
 
   return (
     <Operator
