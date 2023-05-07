@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
 import {color, spacing} from '../../styles';
-import {Input} from '../Input';
 
-export const Component = styled(Input)<{selected: boolean}>(
+import {Base} from './Base';
+
+export const Selectable = styled(Base)<{selected: boolean}>(
   {
     backgroundColor: color.buttons.number.backgroundColor,
   },

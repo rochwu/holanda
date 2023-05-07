@@ -4,7 +4,7 @@ import {attributes} from '../../attributes';
 import {Id, useStore} from '../../store';
 import {reduce, stringify} from '../../tokens';
 
-import {Component} from './Component';
+import {Selectable} from './Selectable';
 
 type Props = {
   identifier?: Id;
@@ -34,8 +34,8 @@ export const Field: FC<Props> = ({identifier}) => {
   const value = useStore(useCallback((state) => state.byId[id] || 0, [id]));
 
   return (
-    <Component selected={selected} onClick={click} {...attributes.input}>
+    <Selectable selected={selected} onClick={click} {...attributes.input}>
       {selected ? <Editing /> : value}
-    </Component>
+    </Selectable>
   );
 };

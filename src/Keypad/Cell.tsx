@@ -2,18 +2,14 @@ import styled from '@emotion/styled';
 import {FC, ReactNode} from 'react';
 
 import {attributes} from '../attributes';
-import {color, style} from '../styles';
+import {style} from '../styles';
 
 const Component = styled.button(style.button, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   boxSizing: 'border-box',
-  ':disabled': {
-    cursor: 'not-allowed',
-    backgroundColor: color.disabled.backgroundColor,
-    color: color.disabled.color,
-  },
+  ':disabled': style.disabled,
   padding: 0, // iOS pads 1em
 });
 

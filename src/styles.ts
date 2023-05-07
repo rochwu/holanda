@@ -1,3 +1,5 @@
+import {CSSObject} from '@emotion/react';
+
 const gray = (hex2: string) => {
   return `#${hex2.repeat(3)}`;
 };
@@ -33,11 +35,15 @@ export const color = {
   },
 };
 
-export const style = {
+export const style: Record<string, CSSObject> = {
   button: {
     fontSize: '24px',
     borderRadius: spacing.borderRadius,
     cursor: 'pointer',
+  },
+  disabled: {
+    ...color.disabled,
+    cursor: 'not-allowed',
   },
 };
 
