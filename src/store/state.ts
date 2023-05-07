@@ -5,10 +5,11 @@ import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
 import {isNumeric, isOp} from '../is';
+import {precision} from '../precision';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
-import {frontZero, previousToken} from './selectors';
+import {frontZero, lineTotal, previousToken} from './selectors';
 
 export type Id = string;
 
@@ -25,6 +26,7 @@ const initial: State = {
   byId: {},
   id: 'subtotal',
   lefty: false,
+  tips: undefined, // reset wasn't working without this
 };
 
 const pop = (state: Draft<State>) => {
@@ -74,7 +76,7 @@ const tally = (state: Draft<State>) => {
 
 export const useStore = create(
   immer(
-    combine(initial, (set, get) => ({
+    combine(initial, (set, get, store) => ({
       pushDot: () => {
         set((state) => {
           const dot = tokenizer.dot();
@@ -118,12 +120,47 @@ export const useStore = create(
           state.id = id;
         });
       },
+      tokenize: (value: number) => {
+        set((state) => {
+          state.tokens = tokenize.numeric(value);
+        });
+      },
+      clear: () => {
+        set((state) => {
+          state.tokens = [];
+        });
+      },
       tally: () => {
         set(tally);
       },
       flip: () => {
         set((state) => {
           state.lefty = !state.lefty;
+        });
+      },
+      selectTips: (id: Id) => () => {
+        set((state) => {
+          if (state.tips === id) {
+            return;
+          }
+
+          state.tips = id;
+        });
+      },
+      setValue: (id: Id) => (value: number) => {
+        set((state) => {
+          state.byId[id] = value;
+        });
+      },
+      /**
+       *
+       * @param percent ie: 15%
+       */
+      tip: (percent: number) => {
+        set((state) => {
+          const total = precision(lineTotal(state) * (percent / 100 + 1));
+
+          state.byId['total'] = total;
         });
       },
     })),

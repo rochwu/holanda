@@ -1,27 +1,36 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
+import {spacing} from '../styles';
+
 import {Item} from './Item';
 import {Line} from './Line';
+import {LineTotal} from './LineTotal';
 import {Sum} from './Sum';
+import {CustomTips, Tips} from './Tips';
 
 const Container = styled.div({
   gridRow: '1 / 3',
   fontSize: '20px',
   display: 'grid',
+  gridAutoRows: '1fr',
+  gap: spacing.gap,
+  padding: spacing.gap,
 });
 
-export const Receipt: FC = () => {
+type Props = Parameters<typeof Container>[0];
+
+export const Receipt: FC<Props> = (props) => {
   return (
-    <Container>
+    <Container {...props}>
       <Item label="thing" />
       <Sum identifier="subtotal" />
       <Line label="tax" />
-      <Line label="0 tips" />
-      <Line label="15% tips" />
-      <Line label="18% tips" />
-      <Line label="20% tips" />
-      <Line label="custom tips" />
+      <LineTotal />
+      <Tips percent={15} />
+      <Tips percent={18} />
+      <Tips percent={20} />
+      <CustomTips />
       <Sum identifier="total" />
     </Container>
   );

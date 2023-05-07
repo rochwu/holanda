@@ -7,7 +7,7 @@ import {Backspace} from './Backspace';
 import {Flip} from './Flip';
 import {Numeric, Zero} from './Numeric';
 import {Operator, Dot} from './Operator';
-import {spacing} from './constants';
+import {spacing} from '../styles';
 
 const Keys = styled.div({
   display: 'grid',
@@ -19,7 +19,6 @@ const Keys = styled.div({
 });
 
 const Container = styled.div({
-  backgroundColor: '#f3f3f3',
   display: 'flex',
   gridRow: '3',
 });

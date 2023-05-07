@@ -1,19 +1,21 @@
 import styled from '@emotion/styled';
 
+import {spacing} from '../../styles';
 import {Cell} from '../Cell';
 
-export const Base = styled(Cell)<{selected: boolean}>(
-  {
-    width: '10ch',
-    cursor: 'cell',
-  },
-  ({selected}) => {
-    if (selected) {
-      return {border: '2px solid blue'};
-    }
+import {Type} from './types';
 
-    return {
-      border: '2px solid black',
-    };
+type Props = {
+  type?: Type;
+};
+
+export const Base = styled(Cell)<Props>(
+  {
+    overflowX: 'scroll',
+    paddingRight: spacing.inputPadding,
+    borderRadius: spacing.borderRadius,
   },
+  ({type}) => ({
+    width: type === Type.Percent ? '6ch' : '12ch',
+  }),
 );

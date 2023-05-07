@@ -3,6 +3,7 @@ import {FC} from 'react';
 
 import {isOp} from '../../is';
 import {useStore, previousToken} from '../../store';
+import {styles} from '../../styles';
 import {tokenizer} from '../../tokens';
 import {OpType} from '../../types';
 import {Cell} from '../Cell';
@@ -10,10 +11,7 @@ import {colors} from '../colors';
 
 import {Icon} from './Icon';
 
-const color = colors({
-  backgroundColor: '#1E4785',
-  color: 'white',
-});
+const color = colors(styles.color.buttons.positive);
 
 const Component = styled(Cell)(color);
 

@@ -16,7 +16,7 @@ const Container = styled.div({
   maxWidth: '393px', // iPhone 14 Pro
   maxHeight: '660px',
   gridAutoRows: '1fr',
-  backgroundColor: 'white',
+  backgroundColor: '#f3f3f3',
 });
 
 export const App: FC = () => {
@@ -29,7 +29,6 @@ export const App: FC = () => {
 
   const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
     if (target && attributes.read(target as HTMLElement) === null) {
-      console.log('tally');
       tally();
     }
   };
@@ -39,8 +38,8 @@ export const App: FC = () => {
       <GlobalStyles />
       <Debug />
       <Theming>
-        <Container ref={content} onClick={click}>
-          <Receipt />
+        <Container ref={content}>
+          <Receipt onClick={click} />
           <Keypad />
         </Container>
       </Theming>
