@@ -47,6 +47,7 @@ export const Field: FC<Props> = ({identifier, type, onClick, ...props}) => {
 
   return (
     <Selectable
+      dir="ltr"
       type={type}
       selected={selected}
       onClick={click}
