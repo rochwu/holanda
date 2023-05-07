@@ -1,6 +1,7 @@
 import {evaluate} from 'mathjs';
 
 import {isDot, isNumeric, isOp, isEnd} from '../is';
+import {precision} from '../precision';
 import {Token} from '../types';
 
 import {toMath} from './tokenization';
@@ -9,7 +10,7 @@ import {tokenizer} from './tokenizer';
 const total = (value: string): number => {
   try {
     const answer: number = evaluate(value);
-    return Number(answer.toFixed(2));
+    return precision(answer);
   } catch (e) {
     console.error('❌ Something fucked up at in total');
     throw e;
@@ -37,6 +38,7 @@ export const reduce = (tokens: Token.Any[]): Token.Any[] => {
 
   for (const token of tokens) {
     if (isEnd(token)) {
+      // TODO: I don't think I ever push End anywhere, can remove the whole thing
       return finish(tokenizer.end());
     }
 

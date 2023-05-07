@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
-import {useInputState} from './input-state';
+import {useStore} from './store';
+import {stringify} from './tokens';
 
 const Container = styled.div({
   position: 'absolute',
@@ -14,7 +15,7 @@ const isDev = !!process.env.NODE_ENV?.includes('dev');
 const Prod: FC = () => null;
 
 const Dev: FC = () => {
-  const state = useInputState((state) => state);
+  const state = useStore((state) => state);
 
   const reset = () => {
     state.reset();
@@ -23,6 +24,7 @@ const Dev: FC = () => {
   return (
     <Container>
       <button onClick={reset}>reset input state</button>
+      <pre>{stringify.field(state.tokens)}</pre>
       <pre>{JSON.stringify(state, null, 2)}</pre>
     </Container>
   );

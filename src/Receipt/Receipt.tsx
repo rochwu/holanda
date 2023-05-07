@@ -1,25 +1,28 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
-import {useInputState} from '../input-state';
-import {stringify} from '../tokens';
-
-import {Field} from './Field';
+import {Item} from './Item';
+import {Line} from './Line';
+import {Sum} from './Sum';
 
 const Container = styled.div({
   gridRow: '1 / 3',
+  fontSize: '20px',
+  display: 'grid',
 });
 
 export const Receipt: FC = () => {
-  const tokens = useInputState((state) => state.tokens);
-
-  const change = () => {};
-
   return (
     <Container>
-      <Field onChange={change} />
-      <Field value={420.69} onChange={change} />
-      {stringify.field(tokens)}
+      <Item label="thing" />
+      <Sum identifier="subtotal" />
+      <Line label="tax" />
+      <Line label="0 tips" />
+      <Line label="15% tips" />
+      <Line label="18% tips" />
+      <Line label="20% tips" />
+      <Line label="custom tips" />
+      <Sum identifier="total" />
     </Container>
   );
 };

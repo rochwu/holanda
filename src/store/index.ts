@@ -1,4 +1,4 @@
-export {useInputState} from './state';
+export {useStore, type Id} from './state';
 export {
   frontZero,
   enoughCents,
