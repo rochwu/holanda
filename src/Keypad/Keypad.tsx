@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
+import {spacing} from '../styles';
 import {OpType} from '../types';
 
 import {Backspace} from './Backspace';
 import {Flip} from './Flip';
 import {Numeric, Zero} from './Numeric';
 import {Operator, Dot} from './Operator';
-import {spacing} from '../styles';
 
 const Keys = styled.div({
   display: 'grid',
