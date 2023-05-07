@@ -160,7 +160,9 @@ export const useStore = create(
         set((state) => {
           const total = precision(lineTotal(state) * (percent / 100 + 1));
 
-          state.byId['total'] = total;
+          if (total) {
+            state.byId['total'] = total;
+          }
         });
       },
     })),
