@@ -11,7 +11,7 @@ type Props = {
 
 export const Base = styled(Cell)<Props>(
   {
-    overflowX: 'scroll',
+    overflowX: 'auto', // Scroll made gutter show
     paddingRight: spacing.inputPadding,
     borderRadius: spacing.borderRadius,
   },
