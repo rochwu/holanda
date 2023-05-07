@@ -26,6 +26,7 @@ const Component: FC<ComponentProps> = ({identifier: id, ...props}) => {
   const total = useStore(lineTotal);
   const selected = useStore((state) => state.tips === id);
   const tip = useStore((state) => state.tip);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const select = useCallback(selected ? noop : props.select, [selected]);
 
   const percent = (props.percent || 100) / 100;

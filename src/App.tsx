@@ -38,8 +38,8 @@ export const App: FC = () => {
       <GlobalStyles />
       <Debug />
       <Theming>
-        <Container ref={content} onClick={click}>
-          <Receipt />
+        <Container ref={content}>
+          <Receipt onClick={click} />
           <Keypad />
         </Container>
       </Theming>

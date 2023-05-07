@@ -17,9 +17,11 @@ const Container = styled.div({
   padding: spacing.gap,
 });
 
-export const Receipt: FC = () => {
+type Props = Parameters<typeof Container>[0];
+
+export const Receipt: FC<Props> = (props) => {
   return (
-    <Container>
+    <Container {...props}>
       <Item label="thing" />
       <Sum identifier="subtotal" />
       <Line label="tax" />

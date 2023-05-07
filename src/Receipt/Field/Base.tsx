@@ -4,7 +4,8 @@ import {spacing} from '../../styles';
 import {Cell} from '../Cell';
 
 export const Base = styled(Cell)({
+  overflowX: 'scroll',
   width: '10ch',
-  paddingRight: '8px',
+  paddingRight: spacing.inputPadding,
   borderRadius: spacing.borderRadius,
 });

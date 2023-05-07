@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import {FC} from 'react';
 import {MdFlip} from 'react-icons/md';
 
-import {attributes} from '../attributes';
 import {useStore} from '../store';
 import {styles} from '../styles';
 
@@ -35,7 +34,7 @@ export const Flip: FC = () => {
   const flip = useStore((state) => state.flip);
 
   return (
-    <Container onClick={flip} {...attributes.input}>
+    <Container onClick={flip}>
       <MdFlip />
     </Container>
   );
