@@ -12,6 +12,7 @@ const Container = styled.div({
   gridRow: '1 / 3',
   fontSize: '20px',
   display: 'grid',
+  gridAutoRows: '1fr',
   gap: spacing.gap,
   padding: spacing.gap,
 });

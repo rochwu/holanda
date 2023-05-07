@@ -119,6 +119,11 @@ export const useStore = create(
           state.id = id;
         });
       },
+      tokenize: (value: number) => {
+        set((state) => {
+          state.tokens = tokenize.numeric(value);
+        });
+      },
       clear: () => {
         set((state) => {
           state.tokens = [];
@@ -132,11 +137,16 @@ export const useStore = create(
           state.lefty = !state.lefty;
         });
       },
-      tip: (id: Id) => (tips: number) => {
+      selectTips: (id: Id) => () => {
         set((state) => {
           state.tips = id;
+        });
+      },
+      tip: (tips: number) => {
+        set((state) => {
+          const total = lineTotal(state) + tips;
 
-          state.byId['total'] = lineTotal(state) + tips;
+          state.byId['total'] = total;
         });
       },
     })),

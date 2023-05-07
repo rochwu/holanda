@@ -1,4 +1,4 @@
-import {FC, useCallback, useId} from 'react';
+import {FC, useCallback, useId, useLayoutEffect} from 'react';
 
 import {attributes} from '../../attributes';
 import {Id, useStore} from '../../store';
@@ -22,6 +22,15 @@ export const Field: FC<Props> = ({identifier}) => {
 
   const select = useStore(useCallback((state) => state.select(id), [id]));
   const selected = useStore((state) => state.id === id);
+  const value = useStore(useCallback((state) => state.byId[id] || 0, [id]));
+  const set = useStore((state) => state.tokenize);
+
+  useLayoutEffect(() => {
+    if (selected) {
+      set(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const click = () => {
     if (selected) {
@@ -30,8 +39,6 @@ export const Field: FC<Props> = ({identifier}) => {
 
     select();
   };
-
-  const value = useStore(useCallback((state) => state.byId[id] || 0, [id]));
 
   return (
     <Selectable selected={selected} onClick={click} {...attributes.input}>

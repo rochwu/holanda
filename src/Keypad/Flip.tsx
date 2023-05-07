@@ -4,16 +4,23 @@ import {MdFlip} from 'react-icons/md';
 
 import {attributes} from '../attributes';
 import {useStore} from '../store';
-import {color, spacing} from '../styles';
+import {styles} from '../styles';
 
 import {Cell} from './Cell';
 import {colors} from './colors';
 
+const buttonStyles = styles.color.buttons.positive;
+
+const color = colors({
+  color: buttonStyles.backgroundColor,
+  backgroundColor: buttonStyles.color,
+});
+
 const Container = styled(Cell)(
-  colors(color.buttons.number),
+  color,
   {
     width: '48px',
-    margin: spacing.gap,
+    margin: styles.spacing.gap,
   },
   ({theme}) => {
     if (theme.lefty) {

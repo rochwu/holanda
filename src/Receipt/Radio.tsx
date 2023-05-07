@@ -8,13 +8,18 @@ type Props = {
   onClick: () => void;
 };
 
-const size = '36px';
+const size = '44px';
 
-const Component = styled.div<{selected?: boolean}>(({selected}) => ({
+const Background = styled.div({
+  display: 'grid',
+  placeContent: 'center',
+  height: '100%',
+});
+
+const Component = styled.button<{selected?: boolean}>(({selected}) => ({
   cursor: 'pointer',
-  margin: 'auto 0',
-  width: size,
   height: size,
+  width: size,
   borderRadius: size,
   backgroundColor: selected
     ? color.positive
@@ -22,5 +27,9 @@ const Component = styled.div<{selected?: boolean}>(({selected}) => ({
 }));
 
 export const Radio: FC<Props> = ({selected, onClick}) => {
-  return <Component onClick={onClick} selected={selected} />;
+  return (
+    <Background onClick={onClick}>
+      <Component selected={selected} />
+    </Background>
+  );
 };

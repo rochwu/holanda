@@ -30,4 +30,5 @@ const Dev: FC = () => {
   );
 };
 
+// TODO: Debug mode is pretty slow in mobile
 export const Debug: FC = isDev ? Dev : Prod;

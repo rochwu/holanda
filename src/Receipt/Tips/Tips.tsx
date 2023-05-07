@@ -1,7 +1,7 @@
 import {FC, useCallback, useEffect, useId} from 'react';
 
 import {precision} from '../../precision';
-import {lineTotal, useStore} from '../../store';
+import {Id, lineTotal, useStore} from '../../store';
 import {ReadOnly} from '../Field/ReadOnly';
 import {Line} from '../Line';
 import {Radio} from '../Radio';
@@ -12,14 +12,21 @@ type Props = {
   readOnly?: boolean;
 };
 
-export const Tips: FC<Props> = (props) => {
-  const id = useId();
+type ComponentProps = {
+  identifier: Id;
+  select: () => void;
+} & Pick<Props, 'percent'>;
 
+const noop = () => {
+  //
+};
+
+// Split this as an attempt on performance
+const Component: FC<ComponentProps> = ({identifier: id, ...props}) => {
   const total = useStore(lineTotal);
   const selected = useStore((state) => state.tips === id);
-  const set = useStore(useCallback((state) => state.tip(id), [id]));
-
-  const label = props.label ?? `${props.percent}% tips`;
+  const tip = useStore((state) => state.tip);
+  const select = useCallback(selected ? noop : props.select, [selected]);
 
   const percent = (props.percent || 100) / 100;
 
@@ -27,18 +34,28 @@ export const Tips: FC<Props> = (props) => {
 
   useEffect(() => {
     if (selected) {
-      set(value);
+      tip(value);
     }
-  }, [value, selected, set]);
+  }, [value, selected, tip]);
 
-  const click = () => {
-    set(value);
-  };
+  return (
+    <>
+      <Radio onClick={select} selected={selected} />
+      <ReadOnly onClick={select} value={value} />
+    </>
+  );
+};
+
+export const Tips: FC<Props> = (props) => {
+  const id = useId();
+
+  const select = useStore(useCallback((state) => state.selectTips(id), [id]));
+
+  const label = props.label ?? `${props.percent}% tips`;
 
   return (
     <Line label={label}>
-      <Radio onClick={click} selected={selected} />
-      <ReadOnly value={value} />
+      <Component {...props} identifier={id} select={select} />
     </Line>
   );
 };
