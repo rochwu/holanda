@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 
+import {spacing} from '../styles';
+
 import {Item} from './Item';
 import {Line} from './Line';
 import {Sum} from './Sum';
@@ -9,6 +11,8 @@ const Container = styled.div({
   gridRow: '1 / 3',
   fontSize: '20px',
   display: 'grid',
+  gap: spacing.gap,
+  padding: spacing.gap,
 });
 
 export const Receipt: FC = () => {

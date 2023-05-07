@@ -3,14 +3,12 @@ import {FC} from 'react';
 import {FiDelete} from 'react-icons/fi';
 
 import {useStore} from '../store';
+import {styles} from '../styles';
 
 import {Cell} from './Cell';
 import {colors} from './colors';
 
-const color = colors({
-  backgroundColor: '#A91F32',
-  color: 'white',
-});
+const color = colors(styles.color.buttons.negative);
 
 const Component = styled(Cell)(color);
 

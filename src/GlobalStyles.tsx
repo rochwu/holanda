@@ -15,6 +15,10 @@ const styles = css({
   'body, button': {
     fontFamily: '"Varela Round", sans-serif',
   },
+
+  button: {
+    border: 'none', // resets most user agents
+  },
 });
 
 export const GlobalStyles: FC = () => {

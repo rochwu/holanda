@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 import {FC} from 'react';
 
 import {enoughCents, useStore} from '../../store';
+import {color} from '../../styles';
 import {tokenizer} from '../../tokens';
 import {Cell} from '../Cell';
 
 const Component = styled(Cell)({
-  backgroundColor: 'white',
-  color: 'black',
+  backgroundColor: color.buttons.number.backgroundColor,
+  color: color.buttons.number.color,
   ':active:not(:disabled)': {
     backgroundColor: 'lightgray',
   },
