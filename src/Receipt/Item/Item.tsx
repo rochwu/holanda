@@ -14,7 +14,7 @@ export const Item: FC<Props> = ({label}) => {
 
   // TODO: Better message or probs just do a proper header for the whole App
   return (
-    <Line label={label ?? 'thing'} heading="get the thing">
+    <Line label={label ?? 'thing'} heading="🍗🤔🇳🇱💸">
       <ReadOnly identifier={id} />
       <Field identifier={id} />
     </Line>
