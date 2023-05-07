@@ -12,8 +12,9 @@ type Props = {
 export const Item: FC<Props> = ({label}) => {
   const id = useId();
 
+  // TODO: Better message or probs just do a proper header for the whole App
   return (
-    <Line label={label ?? 'thing'}>
+    <Line label={label ?? 'thing'} heading="get the thing">
       <ReadOnly identifier={id} />
       <Field identifier={id} />
     </Line>

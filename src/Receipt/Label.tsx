@@ -6,7 +6,9 @@ import {Cell} from './Cell';
 const Container = styled(Cell)({
   display: 'flex',
   alignItems: 'center',
-  fontSize: '12px',
+  fontSize: '10px',
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
 });
 
 type Props = {children: ReactNode};

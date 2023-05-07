@@ -13,7 +13,7 @@ const styles = css({
   },
 
   'body, button': {
-    fontFamily: '"Varela Round", sans-serif',
+    fontFamily: '"Lato", sans-serif',
   },
 
   button: {

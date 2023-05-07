@@ -35,7 +35,7 @@ export const CustomTips: FC<Props> = () => {
   };
 
   return (
-    <Line label="custom tips">
+    <Line>
       <Field identifier={percentId} type={Type.Percent} onClick={select} />
       <Base identifier={numberId} select={select} percent={percent} />
     </Line>

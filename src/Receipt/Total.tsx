@@ -14,7 +14,7 @@ const id = Ids.Total;
 
 export const Total: FC<Props> = () => {
   return (
-    <Component label={id}>
+    <Component divide heading="total">
       <Field identifier={id} />
     </Component>
   );

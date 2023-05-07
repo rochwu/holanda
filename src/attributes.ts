@@ -7,4 +7,7 @@ export const attributes = {
   read: (element: HTMLElement) => {
     return element.getAttribute(key);
   },
+  text: {
+    dir: 'ltr',
+  },
 };
