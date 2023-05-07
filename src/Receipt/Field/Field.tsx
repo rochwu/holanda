@@ -1,7 +1,7 @@
 import {FC, useCallback, useLayoutEffect} from 'react';
 
 import {attributes} from '../../attributes';
-import {Id, useStore} from '../../store';
+import {Id, useStore, useValue} from '../../store';
 import {reduce, stringify} from '../../tokens';
 import {useIdentifier} from '../../useIdentifier';
 
@@ -25,7 +25,7 @@ export const Field: FC<Props> = ({identifier, type, onClick, ...props}) => {
 
   const select = useStore(useCallback((state) => state.select(id), [id]));
   const selected = useStore((state) => state.id === id);
-  const value = useStore(useCallback((state) => state.byId[id] || 0, [id]));
+  const value = useValue(id);
   const set = useStore((state) => state.tokenize);
 
   useLayoutEffect(() => {

@@ -1,7 +1,7 @@
 import {FC, useEffect} from 'react';
 
 import {precision} from '../../precision';
-import {Id, Ids, useStore} from '../../store';
+import {Id, Ids, useStore, useValue} from '../../store';
 import {Field} from '../Field';
 import {ReadOnly} from '../Field';
 import {Radio} from '../Radio';
@@ -20,7 +20,7 @@ export const Base: FC<Props> = ({
   select,
   percent,
 }) => {
-  const total = useStore((state) => state.byId[Ids.LineTotal] || 0);
+  const total = useValue(Ids.LineTotal);
   const selected = useStore((state) => state.tips === id);
   const tip = useStore((state) => state.tip);
 

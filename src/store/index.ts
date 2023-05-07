@@ -7,3 +7,4 @@ export {
   previousToken,
 } from './selectors';
 export {Ids} from './ids';
+export {useValue} from './useValue';
