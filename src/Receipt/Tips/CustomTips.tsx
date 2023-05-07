@@ -1,6 +1,6 @@
 import {FC, useCallback, useEffect, useId} from 'react';
 
-import {lineTotal, useStore} from '../../store';
+import {Ids, useStore} from '../../store';
 import {Field} from '../Field';
 import {Type} from '../Field/types';
 import {Line} from '../Line';
@@ -13,7 +13,7 @@ export const CustomTips: FC<Props> = () => {
   const numberId = useId();
   const percentId = useId();
 
-  const total = useStore(lineTotal);
+  const total = useStore((state) => state.byId[Ids.LineTotal]);
   const percent = useStore((state) => state.byId[percentId]);
   const selectTips = useStore(
     useCallback((state) => state.selectTips(numberId), [numberId]),

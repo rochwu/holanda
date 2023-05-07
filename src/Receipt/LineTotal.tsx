@@ -1,18 +1,27 @@
-import {FC} from 'react';
+import {FC, useCallback, useEffect} from 'react';
 
-import {lineTotal, useStore} from '../store';
+import {Ids, useStore} from '../store';
 
-import {ReadOnly} from './Field';
+import {Field} from './Field';
 import {Line} from './Line';
 
 type Props = {};
 
+const id = Ids.LineTotal;
+
 export const LineTotal: FC<Props> = () => {
-  const value = useStore(lineTotal);
+  const tax = useStore((state) => state.byId[Ids.Tax]);
+  const subtotal = useStore((state) => state.byId[Ids.Subtotal]);
+  const setValue = useStore(useCallback((state) => state.setValue(id), []));
+
+  useEffect(() => {
+    setValue(tax + subtotal);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tax, subtotal]);
 
   return (
-    <Line label="line total">
-      <ReadOnly value={value} />
+    <Line label={id}>
+      <Field identifier={id} />
     </Line>
   );
 };

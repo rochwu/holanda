@@ -5,5 +5,5 @@ export {
   enoughDots,
   previousOp,
   previousToken,
-  lineTotal,
 } from './selectors';
+export {Ids} from './ids';
