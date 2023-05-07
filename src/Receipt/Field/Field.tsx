@@ -1,14 +1,18 @@
-import {FC, useCallback, useId, useLayoutEffect} from 'react';
+import {FC, useCallback, useLayoutEffect} from 'react';
 
 import {attributes} from '../../attributes';
 import {Id, useStore} from '../../store';
 import {reduce, stringify} from '../../tokens';
+import {useIdentifier} from '../../useIdentifier';
 
+import {Base} from './Base';
 import {Selectable} from './Selectable';
+import {Type} from './types';
 
 type Props = {
   identifier?: Id;
-};
+  type?: Type;
+} & Parameters<typeof Base>[0];
 
 const Editing: FC = () => {
   const tokens = useStore((state) => state.tokens);
@@ -16,9 +20,8 @@ const Editing: FC = () => {
   return <>{stringify.field(reduce(tokens)) || 0}</>;
 };
 
-export const Field: FC<Props> = ({identifier}) => {
-  const defaultId = useId();
-  const id: Id = identifier ?? defaultId;
+export const Field: FC<Props> = ({identifier, type, onClick, ...props}) => {
+  const id = useIdentifier(identifier);
 
   const select = useStore(useCallback((state) => state.select(id), [id]));
   const selected = useStore((state) => state.id === id);
@@ -32,7 +35,9 @@ export const Field: FC<Props> = ({identifier}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const click = () => {
+  const click: typeof onClick = (event) => {
+    onClick?.(event);
+
     if (selected) {
       return;
     }
@@ -41,7 +46,13 @@ export const Field: FC<Props> = ({identifier}) => {
   };
 
   return (
-    <Selectable selected={selected} onClick={click} {...attributes.input}>
+    <Selectable
+      type={type}
+      selected={selected}
+      onClick={click}
+      {...attributes.input}
+      {...props}
+    >
       {selected ? <Editing /> : value}
     </Selectable>
   );

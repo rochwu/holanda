@@ -5,6 +5,7 @@ import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
 import {isNumeric, isOp} from '../is';
+import {precision} from '../precision';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
@@ -139,12 +140,25 @@ export const useStore = create(
       },
       selectTips: (id: Id) => () => {
         set((state) => {
+          if (state.tips === id) {
+            return;
+          }
+
           state.tips = id;
         });
       },
-      tip: (tips: number) => {
+      setValue: (id: Id) => (value: number) => {
         set((state) => {
-          const total = lineTotal(state) + tips;
+          state.byId[id] = value;
+        });
+      },
+      /**
+       *
+       * @param percent ie: 15%
+       */
+      tip: (percent: number) => {
+        set((state) => {
+          const total = precision(lineTotal(state) * (percent / 100 + 1));
 
           state.byId['total'] = total;
         });

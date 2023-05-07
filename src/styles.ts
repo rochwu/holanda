@@ -7,7 +7,7 @@ const gray = (hex2: string) => {
 export const spacing = {
   gap: '2px',
   borderRadius: '8px',
-  inputPadding: '8px',
+  inputPadding: '4px',
 };
 
 const positive = '#1E4785';

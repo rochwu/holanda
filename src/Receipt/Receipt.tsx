@@ -5,8 +5,9 @@ import {spacing} from '../styles';
 
 import {Item} from './Item';
 import {Line} from './Line';
+import {LineTotal} from './LineTotal';
 import {Sum} from './Sum';
-import {Tips} from './Tips';
+import {CustomTips, Tips} from './Tips';
 
 const Container = styled.div({
   gridRow: '1 / 3',
@@ -25,11 +26,11 @@ export const Receipt: FC<Props> = (props) => {
       <Item label="thing" />
       <Sum identifier="subtotal" />
       <Line label="tax" />
-      <Line label="0 tips" />
+      <LineTotal />
       <Tips percent={15} />
       <Tips percent={18} />
       <Tips percent={20} />
-      <Line label="custom tips" />
+      <CustomTips />
       <Sum identifier="total" />
     </Container>
   );
