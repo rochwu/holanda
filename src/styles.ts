@@ -22,20 +22,33 @@ export const spacing = {
   shortInput: `${pixels.longInput - pixels.inputGap - pixels.radioSize}px`,
 };
 
+// nederland
+// const palette = {
+//   positive: '#1E4785',
+//   negative: '#A91F32',
+//   light: 'white',
+//   dark: 'black',
+//   off: gray('DD'),
+//   background: gray('F3'),
+// };
+
+// no negative
 const palette = {
   positive: '#1E4785',
-  negative: '#A91F32',
+  negative: '#1E4785',
   light: 'white',
   dark: 'black',
+  off: gray('DD'),
+  background: gray('F3'),
 };
 
 export const color = {
   ...palette,
-  background: gray('F3'),
+  background: palette.background,
   dev: palette.light,
   disabled: {
-    color: gray('C1'),
-    backgroundColor: gray('DD'),
+    color: palette.dark,
+    backgroundColor: palette.off,
   },
   buttons: {
     number: {

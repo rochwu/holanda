@@ -34,7 +34,7 @@ const Heading = styled.div(
     position: 'absolute',
     top: 0,
     textTransform: 'uppercase',
-    padding: '2px 8px',
+    padding: '4px 16px',
     fontSize: '14px',
   },
   ({theme}) => {
