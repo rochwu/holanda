@@ -3,19 +3,17 @@ import styled from '@emotion/styled';
 import {spacing} from '../../styles';
 import {Cell} from '../Cell';
 
-import {Type} from './types';
-
 type Props = {
-  type?: Type;
+  width?: string;
 };
 
 export const Base = styled(Cell)<Props>(
   {
-    overflowX: 'auto', // Scroll made gutter show
+    overflowX: 'auto',
     paddingRight: spacing.inputPadding,
     borderRadius: spacing.borderRadius,
   },
-  ({type}) => ({
-    width: type === Type.Percent ? '6ch' : '12ch',
+  ({width}) => ({
+    width: width ?? spacing.longInput,
   }),
 );

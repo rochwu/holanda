@@ -7,11 +7,9 @@ import {useIdentifier} from '../../useIdentifier';
 
 import {Base} from './Base';
 import {Selectable} from './Selectable';
-import {Type} from './types';
 
 type Props = {
   identifier?: Id;
-  type?: Type;
 } & Parameters<typeof Base>[0];
 
 const Editing: FC = () => {
@@ -20,7 +18,7 @@ const Editing: FC = () => {
   return <>{stringify.field(reduce(tokens)) || 0}</>;
 };
 
-export const Field: FC<Props> = ({identifier, type, onClick, ...props}) => {
+export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
   const id = useIdentifier(identifier);
 
   const select = useStore(useCallback((state) => state.select(id), [id]));
@@ -47,7 +45,6 @@ export const Field: FC<Props> = ({identifier, type, onClick, ...props}) => {
 
   return (
     <Selectable
-      type={type}
       selected={selected}
       onClick={click}
       {...attributes.input}

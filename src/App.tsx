@@ -8,6 +8,7 @@ import {Receipt} from './Receipt';
 import {Theming} from './Theming';
 import {attributes} from './attributes';
 import {useStore} from './store';
+import {color} from './styles';
 import {useAutoResize} from './useAutoResize';
 
 const Container = styled.div({
@@ -16,7 +17,7 @@ const Container = styled.div({
   maxWidth: '393px', // iPhone 14 Pro
   maxHeight: '660px',
   gridAutoRows: '1fr',
-  backgroundColor: '#f3f3f3',
+  backgroundColor: color.background,
 });
 
 export const App: FC = () => {
