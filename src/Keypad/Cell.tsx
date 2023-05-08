@@ -17,10 +17,6 @@ type Props = {
   children: ReactNode;
 } & Parameters<typeof Component>[0];
 
-export const Cell: FC<Props> = ({children, onClick, ...props}) => {
-  return (
-    <Component {...props} onClick={onClick}>
-      {children}
-    </Component>
-  );
+export const Cell: FC<Props> = ({children, ...elementProps}) => {
+  return <Component {...elementProps}>{children}</Component>;
 };
