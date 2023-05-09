@@ -14,6 +14,7 @@ export default defineConfig(() => {
   }
 
   return {
+    base: 'nederland',
     server: {
       open: true,
       port: 3000,
