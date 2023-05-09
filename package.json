@@ -5,24 +5,27 @@
   "main": "src/index.tsx",
   "license": "MIT",
   "homepage": "https://rochwu.github.io/nederland",
+  "private": "true",
   "dependencies": {
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
+    "@nederland/use-swipe": "1.0.0",
     "immer": "9.0.21",
-    "loader-utils": "3.2.1",
+    "lodash-es": "^4.17.21",
     "mathjs": "11.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
-    "react-scripts": "5.0.1",
     "zustand": "4.3.7"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.7",
     "@types/node": "^20.1.0",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
+    "@vitejs/plugin-react": "^4.0.0",
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
@@ -30,20 +33,16 @@
     "gh-pages": "^5.0.0",
     "prettier": "^2.8.8",
     "typescript": "5.0.4",
+    "vite": "^4.3.5",
     "yarn-deduplicate": "^6.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "BUILD_PATH='./dist' react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
     "deploy": "gh-pages -d dist",
     "deduplicate": "yarn yarn-deduplicate"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+  "workspaces": [
+    "packages/*"
   ]
 }

@@ -12,6 +12,7 @@ const styles = css({
     overflow: 'hidden', // stops iOS safari from swiping vertically
     userSelect: 'none', // iOS sucks when double click selects shit
     margin: 0, // no user agent
+    overscrollBehaviorX: 'none', // Prevent swipes from going history back and forth
   },
 
   'body, button': {

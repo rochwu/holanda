@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import {useSwipe} from '@nederland/use-swipe';
 import {FC, MouseEventHandler, useRef} from 'react';
 
 import {Debug} from './Debug';
@@ -27,6 +28,10 @@ export const App: FC = () => {
   useAutoResize({change: content});
 
   const tally = useStore((state) => state.tally);
+
+  useSwipe((action) => {
+    console.log('SWIPE', action);
+  });
 
   const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
     if (target && attributes.read(target as HTMLElement) === null) {
