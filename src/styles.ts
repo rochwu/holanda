@@ -9,7 +9,6 @@ const pixels = {
   radioSize: 44,
   longInput: 170.5,
   inputPadding: 4,
-  inputGap: 4,
   focus: 4,
 };
 
@@ -17,10 +16,9 @@ export const spacing = {
   gap: `${pixels.gap}px`,
   borderRadius: '8px',
   radioSize: '44px',
-  inputGap: `${pixels.inputGap}px`,
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
-  shortInput: `${pixels.longInput - pixels.inputGap - pixels.radioSize}px`,
+  shortInput: `${pixels.longInput - pixels.focus - pixels.radioSize}px`,
   label: '12px',
   focus: `${pixels.focus}px`,
 };
@@ -46,6 +44,7 @@ const palette = {
     .getAttribute('content')!
     .toString(),
   backgroundText: '#EFEFEF',
+  final: '#50C878',
 };
 
 export const color = {

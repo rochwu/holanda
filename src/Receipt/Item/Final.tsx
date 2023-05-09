@@ -3,15 +3,19 @@ import {FC} from 'react';
 
 import {precision} from '../../precision';
 import {Id, Ids, useValue} from '../../store';
+import {color} from '../../styles';
 import {Cell} from '../Cell';
 
 type Props = {
   identifier: Id;
 };
 
-const Component = styled(Cell)({});
+const Component = styled(Cell)({
+  fontSize: '24px',
+  color: color.final,
+});
 
-export const ReadOnly: FC<Props> = ({identifier: id}) => {
+export const Final: FC<Props> = ({identifier: id}) => {
   useValue(id);
 
   const value = useValue(id);
@@ -23,7 +27,7 @@ export const ReadOnly: FC<Props> = ({identifier: id}) => {
 
     const display = total * ratio;
 
-    return <Component>{precision(display)}</Component>;
+    return <Component>${precision(display)}</Component>;
   }
 
   return null;

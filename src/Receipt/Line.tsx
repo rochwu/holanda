@@ -9,7 +9,7 @@ import {Label} from './Label';
 const Container = styled.div<{divide?: boolean}>(
   {
     display: 'flex',
-    gap: spacing.inputGap,
+    gap: spacing.focus,
     justifyContent: 'end',
     position: 'relative',
   },
