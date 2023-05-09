@@ -8,7 +8,7 @@ import {styles} from '../styles';
 import {Cell} from './Cell';
 import {colors} from './colors';
 
-const buttonStyles = styles.color.buttons.positive;
+const buttonStyles = styles.color.buttons.action;
 
 const color = colors({
   color: buttonStyles.backgroundColor,

@@ -8,7 +8,6 @@ const Component = styled.button(style.button, {
   justifyContent: 'center',
   alignItems: 'center',
   boxSizing: 'border-box',
-  ':disabled': style.disabled,
   padding: 0, // iOS pads 1em
 });
 

@@ -22,7 +22,7 @@ const Component = styled.button<{selected?: boolean}>(({selected}) => ({
   width: size,
   borderRadius: size,
   backgroundColor: selected
-    ? color.positive
+    ? color.action
     : color.buttons.number.backgroundColor,
 }));
 
