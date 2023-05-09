@@ -1,0 +1,8 @@
+{
+  "name": "@nederland/use-swipe",
+  "version": "1.0.0",
+  "description": "Swiped from hablaba",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": true
+}
