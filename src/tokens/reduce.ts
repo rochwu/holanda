@@ -1,4 +1,4 @@
-import {evaluate} from 'mathjs';
+import {evaluate} from '../math';
 
 import {isDot, isNumeric, isOp, isEnd} from '../is';
 import {precision} from '../precision';

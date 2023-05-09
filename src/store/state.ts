@@ -1,5 +1,5 @@
 import {Draft} from 'immer';
-import {evaluate} from 'mathjs';
+import {evaluate} from '../math';
 import {create} from 'zustand';
 import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
