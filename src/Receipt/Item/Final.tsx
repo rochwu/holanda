@@ -16,8 +16,6 @@ const Component = styled(Cell)({
 });
 
 export const Final: FC<Props> = ({identifier: id}) => {
-  useValue(id);
-
   const value = useValue(id);
   const total = useValue(Ids.Total);
   const subtotal = useValue(Ids.Subtotal);

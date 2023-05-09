@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import {FC, useCallback, useEffect} from 'react';
 
 import {precision} from '../../precision';
 import {Id, Ids, useStore, useValue} from '../../store';
@@ -9,21 +9,15 @@ import {Radio} from '../Radio';
 
 type Props = {
   identifier: Id;
-  select: () => void;
   percent: number;
-  readOnly?: boolean;
 };
 
 // Split this as an attempt on performance
-export const Base: FC<Props> = ({
-  identifier: id,
-  readOnly,
-  select,
-  percent,
-}) => {
+export const Base: FC<Props> = ({identifier: id, percent}) => {
   const total = useValue(Ids.LineTotal);
   const selected = useStore((state) => state.tips === id);
   const tip = useStore((state) => state.tip);
+  const select = useStore(useCallback((state) => state.selectTips(id), [id]));
 
   const value = precision(total * (percent / 100));
 
@@ -37,11 +31,7 @@ export const Base: FC<Props> = ({
   return (
     <>
       <Radio onClick={select} selected={selected} />
-      {readOnly ? (
-        <ReadOnly onClick={select} value={value} width={spacing.shortInput} />
-      ) : (
-        <Field identifier={id} onClick={select} width={spacing.shortInput} />
-      )}
+      <ReadOnly onClick={select} value={value} width={spacing.shortInput} />
     </>
   );
 };

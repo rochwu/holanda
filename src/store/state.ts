@@ -72,7 +72,7 @@ const tally = (state: Draft<State>) => {
     return;
   }
 
-  state.byId[id] = total;
+  state.byId[id] = precision(total);
 };
 
 export const useStore = create(
@@ -150,7 +150,7 @@ export const useStore = create(
       },
       setValue: (id: Id) => (value: number) => {
         set((state) => {
-          state.byId[id] = value;
+          state.byId[id] = precision(value);
         });
       },
       /**
@@ -159,12 +159,10 @@ export const useStore = create(
        */
       tip: (percent: number) => {
         set((state) => {
-          if (percent) {
-            const total = precision(
-              state.byId[Ids.LineTotal] * (percent / 100 + 1),
-            );
+          if (percent || 100) {
+            const total = state.byId[Ids.LineTotal] * (percent / 100 + 1);
 
-            state.byId[Ids.Total] = total;
+            state.byId[Ids.Total] = precision(total);
           }
         });
       },
