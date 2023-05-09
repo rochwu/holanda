@@ -1,8 +1,18 @@
-import {defineConfig} from 'vite';
+import {PluginOption, defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import {visualizer} from 'rollup-plugin-visualizer';
 
 export default defineConfig(() => {
+  const plugins: PluginOption = [react()];
+
+  if (process.env.STATS === 'true') {
+    plugins.push(
+      visualizer({
+        open: true,
+      }),
+    );
+  }
+
   return {
     server: {
       open: true,
@@ -10,6 +20,6 @@ export default defineConfig(() => {
       host: true,
     },
     build: {},
-    plugins: [react(), visualizer()],
+    plugins,
   };
 });
