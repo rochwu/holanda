@@ -11,7 +11,7 @@ import {colors} from '../colors';
 
 import {Icon} from './Icon';
 
-const color = colors(styles.color.buttons.positive);
+const color = colors(styles.color.buttons.action);
 
 const Component = styled(Cell)(color);
 

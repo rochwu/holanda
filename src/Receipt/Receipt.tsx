@@ -16,7 +16,7 @@ const Container = styled.div({
   display: 'grid',
   gridAutoRows: '1fr',
   gap: spacing.gap,
-  padding: spacing.gap,
+  padding: spacing.focus,
 });
 
 type Props = Parameters<typeof Container>[0];

@@ -8,7 +8,7 @@ import {styles} from '../styles';
 import {Cell} from './Cell';
 import {colors} from './colors';
 
-const color = colors(styles.color.buttons.negative);
+const color = colors(styles.color.buttons.action);
 
 const Component = styled(Cell)(color);
 

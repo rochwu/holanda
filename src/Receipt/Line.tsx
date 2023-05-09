@@ -16,7 +16,7 @@ const Container = styled.div<{divide?: boolean}>(
   ({divide}) => {
     if (divide) {
       return {
-        borderTop: '1px solid black',
+        borderTop: `1px solid ${color.background}`,
       };
     }
   },
@@ -29,7 +29,7 @@ type Props = {
 } & Parameters<typeof Container>[0];
 
 const Heading = styled.div(
-  color.buttons.positive,
+  color.buttons.action,
   {
     position: 'absolute',
     top: 0,

@@ -10,6 +10,7 @@ const pixels = {
   longInput: 170.5,
   inputPadding: 4,
   inputGap: 4,
+  focus: 4,
 };
 
 export const spacing = {
@@ -20,6 +21,8 @@ export const spacing = {
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
   shortInput: `${pixels.longInput - pixels.inputGap - pixels.radioSize}px`,
+  label: '12px',
+  focus: `${pixels.focus}px`,
 };
 
 // nederland
@@ -34,12 +37,15 @@ export const spacing = {
 
 // no negative
 const palette = {
-  positive: '#1E4785',
-  negative: '#1E4785',
+  action: '#5E5E5E',
   light: 'white',
-  dark: 'black',
+  dark: '#5E5E5E',
   off: gray('DD'),
-  background: gray('F3'),
+  background: document
+    .getElementById('theme')!
+    .getAttribute('content')!
+    .toString(),
+  backgroundText: '#EFEFEF',
 };
 
 export const color = {
@@ -55,13 +61,9 @@ export const color = {
       color: palette.dark,
       backgroundColor: palette.light,
     },
-    positive: {
+    action: {
       color: palette.light,
-      backgroundColor: palette.positive,
-    },
-    negative: {
-      color: palette.light,
-      backgroundColor: palette.negative,
+      backgroundColor: palette.action,
     },
   },
 };

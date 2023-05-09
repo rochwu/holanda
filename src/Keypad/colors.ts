@@ -6,12 +6,9 @@ export const colors = ({backgroundColor, color}: Props): CSSObject => {
   return {
     color,
     backgroundColor,
-    ':active:not(:disabled)': {
+    ':active': {
       color: backgroundColor,
       backgroundColor: color,
-    },
-    ':hover:not(:disabled)': {
-      filter: 'brightness(125%)',
     },
   };
 };
