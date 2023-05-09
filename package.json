@@ -4,7 +4,7 @@
   "description": "It started as me getting annoyed at my algebra at a restaurant, and now it turned into me getting annoyed at building calculators",
   "main": "src/index.tsx",
   "license": "MIT",
-  "homepage": "https://rochwu.github.io/nederland",
+  "homepage": "https://github.com/rochwu/nederland",
   "private": "true",
   "dependencies": {
     "@emotion/react": "11.10.6",
