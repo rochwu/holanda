@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import {useSwipe} from '@nederland/use-swipe';
 import {FC, MouseEventHandler, useRef} from 'react';
 
 import {Debug} from './Debug';
 import {GlobalStyles} from './GlobalStyles';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
+import {System} from './System';
 import {Theming} from './Theming';
 import {attributes} from './attributes';
 import {useStore} from './store';
@@ -21,17 +21,23 @@ const Container = styled.div({
   backgroundColor: color.background,
 });
 
-export const App: FC = () => {
+const Virtual: FC = () => {
+  return (
+    <>
+      <GlobalStyles />
+      <Debug />
+      <System />
+    </>
+  );
+};
+
+const Real: FC = () => {
   const content = useRef<HTMLDivElement>(null);
 
   useAutoResize();
   useAutoResize({change: content});
 
   const tally = useStore((state) => state.tally);
-
-  useSwipe((action) => {
-    console.log('SWIPE', action);
-  });
 
   const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
     if (target && attributes.read(target as HTMLElement) === null) {
@@ -40,15 +46,20 @@ export const App: FC = () => {
   };
 
   return (
+    <Theming>
+      <Container ref={content}>
+        <Receipt onClick={click} />
+        <Keypad />
+      </Container>
+    </Theming>
+  );
+};
+
+export const App: FC = () => {
+  return (
     <>
-      <GlobalStyles />
-      <Debug />
-      <Theming>
-        <Container ref={content}>
-          <Receipt onClick={click} />
-          <Keypad />
-        </Container>
-      </Theming>
+      <Virtual />
+      <Real />
     </>
   );
 };

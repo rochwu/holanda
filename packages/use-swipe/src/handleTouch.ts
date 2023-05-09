@@ -1,6 +1,7 @@
 import {notifySubscribers} from './state';
 import type {Swipe} from './types';
 
+// TODO: Maybe ask for these in the hook
 const SWIPE_CUTOFF = 5; // Change in coordinates
 const PRESSED_CUTOFF = 200; // Delay to see whether long press
 

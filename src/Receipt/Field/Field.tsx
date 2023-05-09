@@ -5,6 +5,8 @@ import {Id, useStore, useValue} from '../../store';
 import {reduce, stringify} from '../../tokens';
 import {useIdentifier} from '../../useIdentifier';
 
+import {order} from '../../order';
+
 import {Base} from './Base';
 import {Selectable} from './Selectable';
 
@@ -42,6 +44,8 @@ export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
 
     select();
   };
+
+  order.useSubscribe(id);
 
   return (
     <Selectable
