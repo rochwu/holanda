@@ -14,9 +14,10 @@ const Container = styled.div({
   gridRow: '1 / 3',
   fontSize: '20px',
   display: 'grid',
-  gridAutoRows: '1fr',
+  gridAutoRows: 'minmax(44px, 1fr)',
   gap: spacing.gap,
   padding: spacing.focus,
+  paddingInlineStart: 0,
 });
 
 type Props = Parameters<typeof Container>[0];

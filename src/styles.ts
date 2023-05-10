@@ -6,32 +6,27 @@ const gray = (hex2: string) => {
 
 const pixels = {
   gap: 2,
-  radioSize: 44,
-  longInput: 170.5,
+  longInput: 170,
   inputPadding: 4,
   focus: 4,
+  minInput: 44,
 };
 
+/**
+ * things with px
+ * TODO: Maybe move to a more dynamic thingo
+ */
 export const spacing = {
   gap: `${pixels.gap}px`,
   borderRadius: '8px',
-  radioSize: '44px',
+  radioSize: `${pixels.minInput}px`,
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
-  shortInput: `${pixels.longInput - pixels.focus - pixels.radioSize}px`,
-  label: '12px',
+  shortInput: `${pixels.longInput - pixels.focus - pixels.minInput}px`,
+  label: '10px',
   focus: `${pixels.focus}px`,
+  minInputHeight: `${pixels.minInput}px`,
 };
-
-// nederland
-// const palette = {
-//   positive: '#1E4785',
-//   negative: '#A91F32',
-//   light: 'white',
-//   dark: 'black',
-//   off: gray('DD'),
-//   background: gray('F3'),
-// };
 
 // no negative
 const palette = {

@@ -15,7 +15,7 @@ export const Tips: FC<Props> = ({percent, heading}) => {
   const label = `${percent}%`;
 
   return (
-    <Line divide={!!heading} heading={heading} label={label}>
+    <Line heading={heading} label={label}>
       <Base identifier={id} percent={percent} />
     </Line>
   );

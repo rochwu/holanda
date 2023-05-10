@@ -9,18 +9,17 @@ import {System} from './System';
 import {Theming} from './Theming';
 import {attributes} from './attributes';
 import {useStore} from './store';
-import {color} from './styles';
 import {useAutoResize} from './useAutoResize';
+import {Header} from './Header';
+import {Instructions} from './Instructionts';
 
 const Container = styled.div({
-  position: 'relative',
   display: 'grid',
-  maxWidth: '393px', // iPhone 14 Pro
-  maxHeight: '660px',
   gridAutoRows: '1fr',
-  backgroundColor: color.background,
+  position: 'relative',
 });
 
+// Only renders null
 const Virtual: FC = () => {
   return (
     <>
@@ -39,6 +38,7 @@ const Real: FC = () => {
 
   const tally = useStore((state) => state.tally);
 
+  // TODO: Maybe tally on change
   const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
     if (target && attributes.read(target as HTMLElement) === null) {
       tally();
@@ -46,8 +46,10 @@ const Real: FC = () => {
   };
 
   return (
-    <Theming>
-      <Container ref={content}>
+    <Theming ref={content}>
+      <Header />
+      <Container>
+        <Instructions />
         <Receipt onClick={click} />
         <Keypad />
       </Container>

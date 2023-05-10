@@ -19,7 +19,6 @@ const Container = styled(Cell)(
   color,
   {
     width: '48px',
-    margin: styles.spacing.gap,
   },
   ({theme}) => {
     if (theme.lefty) {
