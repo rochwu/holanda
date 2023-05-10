@@ -12,6 +12,10 @@ const pixels = {
   focus: 4,
 };
 
+/**
+ * things with px
+ * TODO: Maybe move to a more dynamic thingo
+ */
 export const spacing = {
   gap: `${pixels.gap}px`,
   borderRadius: '8px',
@@ -19,7 +23,7 @@ export const spacing = {
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
   shortInput: `${pixels.longInput - pixels.focus - pixels.radioSize}px`,
-  label: '12px',
+  label: '10px',
   focus: `${pixels.focus}px`,
 };
 

@@ -27,7 +27,7 @@ export const CustomTips: FC<Props> = () => {
   }, [total, percent]);
 
   return (
-    <Line>
+    <Line label="???%">
       <Field
         identifier={percentId}
         onClick={selectTips}

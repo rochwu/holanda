@@ -40,7 +40,9 @@ const FocusRing = styled.div<{selected: boolean}>({}, ({selected}) => {
 export const Selectable: FC<Props> = ({children, selected, ...props}) => {
   return (
     <FocusRing selected={selected}>
-      <Component {...props}>{children}</Component>
+      <Component tabIndex={0} {...props}>
+        {children}
+      </Component>
     </FocusRing>
   );
 };

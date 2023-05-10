@@ -15,13 +15,14 @@ const Keys = styled.div({
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridTemplateRows: 'repeat(4, 1fr)',
   gap: spacing.gap,
-  padding: spacing.gap,
   width: '100%',
 });
 
 const Container = styled.div({
   display: 'flex',
   gridRow: '3',
+  padding: `0 ${spacing.gap} ${spacing.gap} ${spacing.gap}`,
+  gap: spacing.gap,
 });
 
 export const Keypad: FC = () => {
