@@ -11,12 +11,15 @@ import {attributes} from './attributes';
 import {useStore} from './store';
 import {useAutoResize} from './useAutoResize';
 import {Header} from './Header';
+import {Instructions} from './Instructionts';
 
 const Container = styled.div({
   display: 'grid',
   gridAutoRows: '1fr',
+  position: 'relative',
 });
 
+// Only renders null
 const Virtual: FC = () => {
   return (
     <>
@@ -35,6 +38,7 @@ const Real: FC = () => {
 
   const tally = useStore((state) => state.tally);
 
+  // TODO: Maybe tally on change
   const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
     if (target && attributes.read(target as HTMLElement) === null) {
       tally();
@@ -45,6 +49,7 @@ const Real: FC = () => {
     <Theming ref={content}>
       <Header />
       <Container>
+        <Instructions />
         <Receipt onClick={click} />
         <Keypad />
       </Container>

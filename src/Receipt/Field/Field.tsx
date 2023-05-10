@@ -2,23 +2,17 @@ import {FC, useCallback, useLayoutEffect} from 'react';
 
 import {attributes} from '../../attributes';
 import {Id, useStore, useValue} from '../../store';
-import {reduce, stringify} from '../../tokens';
 import {useIdentifier} from '../../useIdentifier';
 
 import {order} from '../../order';
 
 import {Base} from './Base';
 import {Selectable} from './Selectable';
+import {Editing} from './Editing';
 
 type Props = {
   identifier?: Id;
 } & Parameters<typeof Base>[0];
-
-const Editing: FC = () => {
-  const tokens = useStore((state) => state.tokens);
-
-  return <>{stringify.field(reduce(tokens)) || 0}</>;
-};
 
 export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
   const id = useIdentifier(identifier);

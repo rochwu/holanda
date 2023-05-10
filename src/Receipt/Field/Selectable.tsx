@@ -6,8 +6,7 @@ import {color, spacing} from '../../styles';
 
 import {Base} from './Base';
 
-export const Component = styled(Base)({
-  backgroundColor: color.buttons.number.backgroundColor,
+export const Component = styled(Base)(color.buttons.number, {
   height: '100%',
 });
 
