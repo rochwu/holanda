@@ -1,6 +1,6 @@
-import {FC, useCallback, useEffect, useId} from 'react';
+import {FC, useCallback, useId, useLayoutEffect} from 'react';
 
-import {Ids, useValue, useStore} from '../../store';
+import {useStore, useValue} from '../../store';
 import {spacing} from '../../styles';
 import {Field} from '../Field';
 import {Line} from '../Line';
@@ -13,24 +13,26 @@ export const CustomTips: FC<Props> = () => {
   const id = useId();
   const percentId = useId();
 
-  const total = useValue(Ids.LineTotal);
   const percent = useValue(percentId);
-  const selectTips = useStore(
-    useCallback((state) => state.selectTips(id), [id]),
-  );
+  const selected = useStore((state) => state.tips === id);
 
-  const setValue = useStore(useCallback((state) => state.setValue(id), [id]));
+  const tip = useStore(useCallback((state) => state.tip(id), [id]));
 
-  useEffect(() => {
-    setValue((percent / 100) * total);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total, percent]);
+  const select = () => {
+    tip(percent);
+  };
+
+  useLayoutEffect(() => {
+    if (selected) {
+      select();
+    }
+  }, [selected, percent]);
 
   return (
     <Line label="???%">
       <Field
         identifier={percentId}
-        onClick={selectTips}
+        onClick={select}
         width={spacing.shortInput}
       />
       <Base identifier={id} percent={percent} />

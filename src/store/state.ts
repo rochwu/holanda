@@ -139,15 +139,6 @@ export const useStore = create(
           state.lefty = !state.lefty;
         });
       },
-      selectTips: (id: Id) => () => {
-        set((state) => {
-          if (state.tips === id) {
-            return;
-          }
-
-          state.tips = id;
-        });
-      },
       setValue: (id: Id) => (value: number) => {
         set((state) => {
           state.byId[id] = precision(value);
@@ -157,12 +148,14 @@ export const useStore = create(
        *
        * @param percent ie: 15%
        */
-      tip: (percent: number) => {
+      tip: (id: Id) => (percent: number) => {
         set((state) => {
-          if (percent || 100) {
-            const total = state.byId[Ids.LineTotal] * (percent / 100 + 1);
+          const total = state.byId[Ids.LineTotal] * (percent / 100 + 1);
 
-            state.byId[Ids.Total] = precision(total);
+          state.byId[Ids.Total] = precision(total);
+
+          if (state.tips !== id) {
+            state.tips = id;
           }
         });
       },
