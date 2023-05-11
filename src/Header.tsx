@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
 import {color} from './styles';
+import {attributes} from './attributes';
 
 type Props = {};
 
@@ -12,5 +13,5 @@ const Container = styled.div({
 });
 
 export const Header: FC<Props> = () => {
-  return <Container>{'🍗🧾💭🇳🇱💸'}</Container>;
+  return <Container {...attributes.text}>{'🍗🧾💭🇳🇱💸'}</Container>;
 };
