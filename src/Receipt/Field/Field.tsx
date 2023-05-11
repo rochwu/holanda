@@ -5,7 +5,6 @@ import {order} from '../../order';
 import {Id, useStore, useValue} from '../../store';
 import {useIdentifier} from '../../useIdentifier';
 
-
 import {Base} from './Base';
 import {Editing} from './Editing';
 import {Selectable} from './Selectable';
@@ -37,7 +36,6 @@ export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
     <Selectable
       selected={selected}
       onClick={click}
-      {...attributes.input}
       {...attributes.text}
       {...props}
     >
