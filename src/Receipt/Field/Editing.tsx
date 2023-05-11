@@ -18,9 +18,12 @@ const blink = keyframes({
   },
 });
 
+const caretSize = '2px';
+
 const Caret = styled.span({
+  borderTop: `${caretSize} solid transparent`,
   borderBottomStyle: 'solid',
-  borderBottomWidth: '2px',
+  borderBottomWidth: caretSize,
   animation: `${blink} 1s linear infinite`,
 });
 

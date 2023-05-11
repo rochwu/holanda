@@ -12,7 +12,7 @@ type Props = {
 const Container = styled.div({
   display: 'flex',
   alignItems: 'center',
-  gap: spacing.inputPadding,
+  gap: spacing.focus,
   paddingInlineStart: spacing.focus,
 });
 

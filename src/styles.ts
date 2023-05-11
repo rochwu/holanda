@@ -7,7 +7,7 @@ const gray = (hex2: string) => {
 const pixels = {
   gap: 2,
   longInput: 170,
-  inputPadding: 4,
+  inputPadding: 8, // Matches radius
   focus: 4,
   minInput: 44,
 };
