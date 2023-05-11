@@ -15,7 +15,7 @@ const Component = styled(Cell)({
   color: color.final,
 });
 
-export const Final: FC<Props> = ({identifier: id}) => {
+const useCost = (id: Id) => {
   const value = useValue(id);
   const total = useValue(Ids.Total);
   const subtotal = useValue(Ids.Subtotal);
@@ -23,10 +23,14 @@ export const Final: FC<Props> = ({identifier: id}) => {
   if (value && total && subtotal) {
     const ratio = value / subtotal;
 
-    const display = total * ratio;
-
-    return <Component>${precision(display)}</Component>;
+    return precision(total * ratio);
   }
 
-  return null;
+  return 0;
+};
+
+export const Final: FC<Props> = ({identifier: id}) => {
+  const cost = useCost(id);
+
+  return <Component>${cost}</Component>;
 };

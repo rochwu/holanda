@@ -14,7 +14,7 @@ const Container = styled.div({
   flexDirection: 'column',
   gap: spacing.inputPadding,
   top: `48px`,
-  left: `16px`,
+  start: `16px`,
   position: 'absolute',
   color: color.light,
 });
