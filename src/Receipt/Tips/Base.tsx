@@ -19,14 +19,10 @@ export const Base: FC<Props> = ({identifier: id, percent}) => {
 
   const value = precision(total * (percent / 100));
 
-  const select = () => {
-    tip(percent);
-  };
-
   return (
     <>
-      <Radio onClick={select} selected={selected} />
-      <ReadOnly onClick={select} value={value} width={spacing.shortInput} />
+      <Radio onClick={tip} selected={selected} />
+      <ReadOnly onClick={tip} value={value} width={spacing.shortInput} />
     </>
   );
 };

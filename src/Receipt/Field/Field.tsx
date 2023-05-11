@@ -1,14 +1,14 @@
 import {FC, useCallback} from 'react';
 
 import {attributes} from '../../attributes';
+import {order} from '../../order';
 import {Id, useStore, useValue} from '../../store';
 import {useIdentifier} from '../../useIdentifier';
 
-import {order} from '../../order';
 
 import {Base} from './Base';
-import {Selectable} from './Selectable';
 import {Editing} from './Editing';
+import {Selectable} from './Selectable';
 
 type Props = {
   identifier?: Id;

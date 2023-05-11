@@ -1,37 +1,60 @@
 import styled from '@emotion/styled';
-import {FC, useLayoutEffect} from 'react';
+import {FC, useCallback, useLayoutEffect, useMemo} from 'react';
 
 import {Ids, useStore, useValue} from '../store';
 
 import {Field} from './Field';
+import {Final} from './Final';
 import {Line} from './Line';
-
-type Props = {};
 
 const Component = styled(Line)({});
 
 const id = Ids.Total;
 
 const System: FC = () => {
-  const value = useValue(id);
-  const set = useStore((state) => state.tokenize);
+  const tips = useStore((state) => {
+    const selected = state.tips;
+
+    if (selected) {
+      return state.byId[selected] || 0;
+    }
+
+    return 0;
+  });
+  const lineTotal = useValue(Ids.LineTotal);
+
+  const total = useMemo(() => {
+    return lineTotal * (tips / 100 + 1);
+  }, [lineTotal, tips]);
+
   const selected = useStore((state) => state.id === id);
+
+  const set = useStore((state) => state.tokenize);
+  const setValue = useStore(useCallback((state) => state.setValue(id), [id]));
 
   useLayoutEffect(() => {
     if (selected) {
       // When total is selected and tips are being changed
-      set(value);
+      set(total);
+    } else {
+      setValue(total);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [total]);
 
   return null;
 };
 
-export const Total: FC<Props> = () => {
+const Value: FC = () => {
+  const total = useValue(Ids.Total);
+
+  return <Final cost={total} />;
+};
+
+export const Total: FC = () => {
   return (
     <>
       <Component label="total">
+        <Value />
         <Field identifier={id} />
       </Component>
       <System />

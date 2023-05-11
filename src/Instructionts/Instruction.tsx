@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import {FC, ReactNode} from 'react';
+import type {IconType} from 'react-icons';
+
 import {spacing} from '../styles';
 
-import type {IconType} from 'react-icons';
 
 type Props = {
   Icon?: IconType;

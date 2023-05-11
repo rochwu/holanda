@@ -1,7 +1,8 @@
-import {FC} from 'react';
-import {useStore} from './store';
 import {useSwipe} from '@nederland/use-swipe';
+import {FC} from 'react';
+
 import {order} from './order';
+import {useStore} from './store';
 
 export const System: FC = () => {
   const select = useStore((state) => state.select);

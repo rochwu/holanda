@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 
-type Props = {};
-
-export const Cell = styled.div<Props>({
+export const Cell = styled.div({
   display: 'flex',
   justifyContent: 'right',
   alignItems: 'center',

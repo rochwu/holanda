@@ -3,8 +3,8 @@ import {FC, ReactNode} from 'react';
 
 import {attributes} from '../../attributes';
 import {spacing} from '../../styles';
-
 import {Label} from '../Label';
+
 import {Heading} from './Heading';
 
 const Container = styled.div({
