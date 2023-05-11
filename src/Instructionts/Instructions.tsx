@@ -14,9 +14,9 @@ const Container = styled.div({
   flexDirection: 'column',
   gap: spacing.inputPadding,
   top: `48px`,
-  start: `16px`,
   position: 'absolute',
   color: color.light,
+  insetInlineStart: `16px`,
 });
 
 export const Instructions: FC<Props> = () => {
