@@ -1,6 +1,5 @@
-import {evaluate} from '../math';
-
 import {isDot, isNumeric, isOp, isEnd} from '../is';
+import {evaluate} from '../math';
 import {precision} from '../precision';
 import {Token} from '../types';
 

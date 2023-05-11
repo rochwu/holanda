@@ -17,8 +17,8 @@ let ended = true;
 let pressed = false;
 
 const updateAverage = (x: number, y: number) => {
-  let newX = lastX - x;
-  let newY = lastY - y;
+  const newX = lastX - x;
+  const newY = lastY - y;
 
   if (!events) {
     averageX = 0;

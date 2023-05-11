@@ -1,9 +1,10 @@
 import {FC, useId} from 'react';
 
 import {Field} from '../Field';
+import {Final} from '../Final';
 import {Line} from '../Line';
 
-import {Final} from './Final';
+import {useCost} from './useCost';
 
 type Props = {
   label?: string;
@@ -12,9 +13,11 @@ type Props = {
 export const Item: FC<Props> = ({label}) => {
   const id = useId();
 
+  const cost = useCost(id);
+
   return (
     <Line label={label ?? 'thing'}>
-      <Final identifier={id} />
+      <Final cost={cost} />
       <Field identifier={id} />
     </Line>
   );

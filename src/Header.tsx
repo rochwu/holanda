@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {color} from './styles';
 
-type Props = {};
+import {attributes} from './attributes';
+import {color} from './styles';
 
 const Container = styled.div({
   display: 'grid',
@@ -11,6 +11,6 @@ const Container = styled.div({
   backgroundColor: color.background,
 });
 
-export const Header: FC<Props> = () => {
-  return <Container>{'🍗🧾💭🇳🇱💸'}</Container>;
+export const Header: FC = () => {
+  return <Container {...attributes.text}>{'🍗🧾💭🇳🇱💸'}</Container>;
 };

@@ -1,25 +1,23 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
+import {FiDelete} from 'react-icons/fi';
+import {MdSwipeVertical, MdSwipe, MdTouchApp} from 'react-icons/md';
+
 import {color, spacing} from '../styles';
 
-import {MdSwipeVertical, MdSwipe, MdTouchApp} from 'react-icons/md';
-import {FiDelete} from 'react-icons/fi';
-
 import {Instruction} from './Instruction';
-
-type Props = {};
 
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
   gap: spacing.inputPadding,
   top: `48px`,
-  left: `16px`,
   position: 'absolute',
   color: color.light,
+  insetInlineStart: `16px`,
 });
 
-export const Instructions: FC<Props> = () => {
+export const Instructions: FC = () => {
   return (
     <Container>
       <Instruction>GUIDE</Instruction>

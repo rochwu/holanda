@@ -1,10 +1,10 @@
 import {Draft} from 'immer';
-import {evaluate} from '../math';
 import {create} from 'zustand';
 import {combine} from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 
 import {isNumeric, isOp} from '../is';
+import {evaluate} from '../math';
 import {precision} from '../precision';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
@@ -77,7 +77,7 @@ const tally = (state: Draft<State>) => {
 
 export const useStore = create(
   immer(
-    combine(initial, (set, get, store) => ({
+    combine(initial, (set) => ({
       pushDot: () => {
         set((state) => {
           const dot = tokenizer.dot();
@@ -103,13 +103,8 @@ export const useStore = create(
       reset: () => {
         set(initial);
       },
-      /**
-       * Basically a blur then a focus
-       */
       select: (id: Id) => () => {
         set((state) => {
-          tally(state);
-
           const saved = state.byId[id];
 
           if (saved) {
@@ -139,30 +134,15 @@ export const useStore = create(
           state.lefty = !state.lefty;
         });
       },
-      selectTips: (id: Id) => () => {
-        set((state) => {
-          if (state.tips === id) {
-            return;
-          }
-
-          state.tips = id;
-        });
-      },
       setValue: (id: Id) => (value: number) => {
         set((state) => {
           state.byId[id] = precision(value);
         });
       },
-      /**
-       *
-       * @param percent ie: 15%
-       */
-      tip: (percent: number) => {
+      tip: (id: Id) => () => {
         set((state) => {
-          if (percent || 100) {
-            const total = state.byId[Ids.LineTotal] * (percent / 100 + 1);
-
-            state.byId[Ids.Total] = precision(total);
+          if (state.tips !== id) {
+            state.tips = id;
           }
         });
       },

@@ -1,6 +1,6 @@
 import {Theme, ThemeProvider} from '@emotion/react';
 import styled from '@emotion/styled';
-import {FC, ReactNode, forwardRef} from 'react';
+import {ReactNode, forwardRef} from 'react';
 
 import {useStore} from './store';
 import {color} from './styles';
@@ -31,3 +31,5 @@ export const Theming = forwardRef<HTMLDivElement, Props>(({children}, ref) => {
     </Container>
   );
 });
+
+Theming.displayName = 'Theming';

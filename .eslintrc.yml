@@ -1,12 +1,17 @@
 root: true
 extends:
   - eslint:recommended
-  - react-app
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
   - prettier
+parser: '@typescript-eslint/parser'
 plugins:
+  - '@typescript-eslint'
   - import
 parserOptions:
   sourceType: module
+  ecmaVersion: latest
 env:
   browser: true
 rules:
@@ -22,17 +27,10 @@ rules:
         order: asc
 overrides:
   - files:
-      - src/**/*.ts
-    extends:
-      - plugin:react/recommended
-      - plugin:@typescript-eslint/recommended
-    plugins:
-      - '@typescript-eslint'
-    parser: '@typescript-eslint/parser'
+      - src/**/*.ts*
     rules:
       '@typescript-eslint/no-non-null-assertion': off
       '@typescript-eslint/no-namespace': off
-
 ignorePatterns:
   - dist/*
 settings:

@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
-import {FC, MouseEventHandler, useRef} from 'react';
+import {FC, useRef} from 'react';
 
 import {Debug} from './Debug';
 import {GlobalStyles} from './GlobalStyles';
+import {Header} from './Header';
+import {Instructions} from './Instructionts';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
 import {System} from './System';
 import {Theming} from './Theming';
-import {attributes} from './attributes';
-import {useStore} from './store';
 import {useAutoResize} from './useAutoResize';
-import {Header} from './Header';
-import {Instructions} from './Instructionts';
 
 const Container = styled.div({
   display: 'grid',
@@ -36,21 +34,12 @@ const Real: FC = () => {
   useAutoResize();
   useAutoResize({change: content});
 
-  const tally = useStore((state) => state.tally);
-
-  // TODO: Maybe tally on change
-  const click: MouseEventHandler<HTMLDivElement> = ({target}) => {
-    if (target && attributes.read(target as HTMLElement) === null) {
-      tally();
-    }
-  };
-
   return (
     <Theming ref={content}>
       <Header />
       <Container>
         <Instructions />
-        <Receipt onClick={click} />
+        <Receipt />
         <Keypad />
       </Container>
     </Theming>

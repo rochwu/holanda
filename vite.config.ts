@@ -1,6 +1,6 @@
-import {PluginOption, defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import {visualizer} from 'rollup-plugin-visualizer';
+import {PluginOption, defineConfig} from 'vite';
 
 export default defineConfig(() => {
   const plugins: PluginOption = [react()];
