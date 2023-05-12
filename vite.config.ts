@@ -20,9 +20,7 @@ export default defineConfig(() => {
       port: 3000,
       host: true,
     },
-    build: {
-      manifest: true,
-    },
+    build: {},
     plugins,
   };
 });
