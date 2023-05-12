@@ -5,7 +5,6 @@ import {immer} from 'zustand/middleware/immer';
 
 import {isNumeric, isOp} from '../is';
 import {evaluate} from '../math';
-import {precision} from '../precision';
 import {reduce, stringify, tokenize, tokenizer} from '../tokens';
 import {Token} from '../types';
 
@@ -72,7 +71,7 @@ const tally = (state: Draft<State>) => {
     return;
   }
 
-  state.byId[id] = precision(total);
+  state.byId[id] = total;
 };
 
 export const useStore = create(
@@ -136,7 +135,7 @@ export const useStore = create(
       },
       setValue: (id: Id) => (value: number) => {
         set((state) => {
-          state.byId[id] = precision(value);
+          state.byId[id] = value;
         });
       },
       tip: (id: Id) => () => {

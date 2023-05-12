@@ -9,7 +9,7 @@ const id = Ids.Subtotal;
 
 export const Subtotal: FC = () => {
   return (
-    <Line label={id}>
+    <Line name="subtotal" symbol="+">
       <Field identifier={id} />
     </Line>
   );

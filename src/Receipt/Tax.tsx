@@ -9,7 +9,7 @@ const id = Ids.Tax;
 
 export const Tax: FC = () => {
   return (
-    <Line label={id}>
+    <Line name="tax" symbol="+">
       <Field identifier={id} />
     </Line>
   );

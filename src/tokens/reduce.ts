@@ -1,6 +1,5 @@
 import {isDot, isNumeric, isOp, isEnd} from '../is';
 import {evaluate} from '../math';
-import {precision} from '../precision';
 import {Token} from '../types';
 
 import {toMath} from './tokenization';
@@ -8,8 +7,7 @@ import {tokenizer} from './tokenizer';
 
 const total = (value: string): number => {
   try {
-    const answer: number = evaluate(value);
-    return precision(answer);
+    return evaluate(value);
   } catch (e) {
     console.error('❌ Something fucked up at in total');
     throw e;

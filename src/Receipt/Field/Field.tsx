@@ -2,6 +2,7 @@ import {FC, useCallback} from 'react';
 
 import {attributes} from '../../attributes';
 import {order} from '../../order';
+import {precision} from '../../precision';
 import {Id, useStore, useValue} from '../../store';
 import {useIdentifier} from '../../useIdentifier';
 
@@ -39,7 +40,7 @@ export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
       {...attributes.text}
       {...props}
     >
-      {selected ? <Editing /> : value}
+      {selected ? <Editing /> : precision(value)}
     </Selectable>
   );
 };
