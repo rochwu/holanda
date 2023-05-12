@@ -53,7 +53,7 @@ const Value: FC = () => {
 export const Total: FC = () => {
   return (
     <>
-      <Component label="total">
+      <Component name="total" symbol="=">
         <Value />
         <Field identifier={id} />
       </Component>

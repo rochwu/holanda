@@ -1,4 +1,5 @@
 import {isNumeric, isOp} from '../is';
+import {precision} from '../precision';
 import {Token} from '../types';
 
 import {tokenizer} from './tokenizer';
@@ -15,7 +16,7 @@ export const toToken = (single: string): Token.Any => {
 
 export const tokenize = {
   numeric: (value: number): Token.Any[] =>
-    Array.from(value.toString(), toToken),
+    Array.from(precision(value).toString(), toToken),
 };
 
 export const toField = (token: Token.Any) => {

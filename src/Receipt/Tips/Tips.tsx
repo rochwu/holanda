@@ -22,7 +22,7 @@ export const Tips: FC<Props> = ({percent, heading}) => {
   }, [percent]);
 
   return (
-    <Line heading={heading} label={label}>
+    <Line heading={heading} name={label} symbol={`\u00D7`}>
       <Base identifier={id} percent={percent} />
     </Line>
   );

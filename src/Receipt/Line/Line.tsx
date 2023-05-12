@@ -9,19 +9,20 @@ import {Heading} from './Heading';
 
 const Container = styled.div({
   display: 'flex',
-  gap: spacing.focus,
+  gap: spacing.inputPadding,
   justifyContent: 'end',
   position: 'relative',
 });
 
 type Props = {
-  label?: string;
   children: ReactNode;
   heading?: string;
-} & Parameters<typeof Container>[0];
+} & Parameters<typeof Container>[0] &
+  Parameters<typeof Label>[0];
 
 export const Line: FC<Props> = ({
-  label,
+  name,
+  symbol,
   children,
   heading,
   ...elementProps
@@ -29,7 +30,7 @@ export const Line: FC<Props> = ({
   return (
     <Container {...elementProps}>
       {heading && <Heading {...attributes.text}>{heading}</Heading>}
-      {label && <Label>{label}</Label>}
+      {name && <Label name={name} symbol={symbol} />}
       {children}
     </Container>
   );

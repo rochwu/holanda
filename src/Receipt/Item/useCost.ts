@@ -1,4 +1,3 @@
-import {precision} from '../../precision';
 import {Id, Ids, useValue} from '../../store';
 
 export const useCost = (id: Id) => {
@@ -9,7 +8,7 @@ export const useCost = (id: Id) => {
   if (value && total && subtotal) {
     const ratio = value / subtotal;
 
-    return precision(total * ratio);
+    return total * ratio;
   }
 
   return 0;

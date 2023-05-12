@@ -6,17 +6,13 @@ import {Line} from '../Line';
 
 import {useCost} from './useCost';
 
-type Props = {
-  label?: string;
-};
-
-export const Item: FC<Props> = ({label}) => {
+export const Item: FC = () => {
   const id = useId();
 
   const cost = useCost(id);
 
   return (
-    <Line label={label ?? 'thing'}>
+    <Line name="thing">
       <Final cost={cost} />
       <Field identifier={id} />
     </Line>

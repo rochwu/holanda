@@ -17,7 +17,7 @@ export const LineTotal: FC = () => {
   }, [tax, subtotal]);
 
   return (
-    <Line label={id}>
+    <Line name="line total" symbol="=">
       <Field identifier={id} />
     </Line>
   );

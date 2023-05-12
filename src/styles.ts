@@ -7,7 +7,8 @@ const gray = (hex2: string) => {
 const pixels = {
   gap: 2,
   longInput: 170,
-  inputPadding: 8, // Matches radius
+  borderRadius: 8,
+  inputPadding: 8,
   focus: 4,
   minInput: 44,
 };
@@ -18,11 +19,11 @@ const pixels = {
  */
 export const spacing = {
   gap: `${pixels.gap}px`,
-  borderRadius: '8px',
+  borderRadius: `${pixels.borderRadius}px`,
   radioSize: `${pixels.minInput}px`,
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
-  shortInput: `${pixels.longInput - pixels.focus - pixels.minInput}px`,
+  shortInput: `${pixels.longInput - pixels.inputPadding - pixels.minInput}px`,
   label: '10px',
   focus: `${pixels.focus}px`,
   minInputHeight: `${pixels.minInput}px`,

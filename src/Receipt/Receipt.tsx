@@ -25,7 +25,7 @@ type Props = Parameters<typeof Container>[0];
 export const Receipt: FC<Props> = (props) => {
   return (
     <Container {...props}>
-      <Item label="thing" />
+      <Item />
       <Subtotal />
       <Tax />
       <LineTotal />
