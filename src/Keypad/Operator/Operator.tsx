@@ -50,6 +50,7 @@ export const Operator: FC<OperatorProps> = ({
 
   return (
     <Component
+      aria-label={op}
       {...props}
       onClick={onClickOverride ?? click}
       disabled={disabledOverride ?? disabled}

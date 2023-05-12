@@ -29,6 +29,7 @@ export const Backspace: FC = () => {
 
   return (
     <Component
+      aria-label="backspace"
       disabled={disabled}
       onClick={pop}
       onTouchStart={start}

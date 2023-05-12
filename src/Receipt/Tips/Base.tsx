@@ -20,7 +20,7 @@ export const Base: FC<Props> = ({identifier: id, percent}) => {
 
   return (
     <>
-      <Radio onClick={tip} selected={selected} />
+      <Radio aria-label={`tip ${percent}%`} onClick={tip} selected={selected} />
       <ReadOnly onClick={tip} value={value} width={spacing.shortInput} />
     </>
   );
