@@ -24,7 +24,7 @@ export const spacing = {
   inputPadding: `${pixels.inputPadding}px`,
   longInput: `${pixels.longInput}px`,
   shortInput: `${pixels.longInput - pixels.inputPadding - pixels.minInput}px`,
-  label: '10px',
+  label: '12px', // At least 12 for font
   focus: `${pixels.focus}px`,
   minInputHeight: `${pixels.minInput}px`,
 };

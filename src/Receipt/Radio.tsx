@@ -3,11 +3,6 @@ import {FC} from 'react';
 
 import {color} from '../styles';
 
-type Props = {
-  selected?: boolean;
-  onClick: () => void;
-};
-
 const size = '44px';
 
 const Background = styled.div({
@@ -26,10 +21,19 @@ const Component = styled.button<{selected?: boolean}>(({selected}) => ({
     : color.buttons.number.backgroundColor,
 }));
 
-export const Radio: FC<Props> = ({selected, onClick}) => {
+type Props = {
+  selected?: boolean;
+  onClick: () => void;
+} & Parameters<typeof Component>[0];
+
+export const Radio: FC<Props> = ({
+  selected,
+  onClick,
+  ['aria-label']: ariaLabel,
+}) => {
   return (
     <Background onClick={onClick}>
-      <Component selected={selected} />
+      <Component aria-label={ariaLabel} selected={selected} />
     </Background>
   );
 };

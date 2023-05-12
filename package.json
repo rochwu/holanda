@@ -39,6 +39,7 @@
   },
   "scripts": {
     "start": "vite",
+    "preview": "vite preview",
     "stats": "STATS=true vite build",
     "build": "vite build",
     "deploy": "gh-pages -d dist",

@@ -5,6 +5,7 @@ export enum Type {
   End = 'End',
 }
 
+// The name is also used as an aria label
 export enum OpType {
   Divide = 'Divide',
   Multiply = 'Multiply',

@@ -33,7 +33,7 @@ export const Flip: FC = () => {
   const flip = useStore((state) => state.flip);
 
   return (
-    <Container onClick={flip}>
+    <Container aria-label="flip keyboard" onClick={flip}>
       <MdFlip />
     </Container>
   );
