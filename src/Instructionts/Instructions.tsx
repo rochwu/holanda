@@ -29,7 +29,7 @@ export const Instructions: FC = () => {
       <Instruction Icon={MdOutlineSwipe}>jump to field</Instruction>
       <Instruction Icon={FiDelete}>hold to delete</Instruction>
       <Instruction Icon={FiClipboard}>
-        hold <FinalText>$</FinalText> to copy
+        tap <FinalText>$</FinalText> to copy
       </Instruction>
     </Container>
   );
