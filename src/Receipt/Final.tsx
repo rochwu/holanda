@@ -3,7 +3,6 @@ import {ComponentProps, FC} from 'react';
 
 import {precision} from '../precision';
 import {color} from '../styles';
-import {useLongPress} from '../useLongPress';
 
 import {Cell} from './Cell';
 
@@ -23,7 +22,5 @@ export const Final: FC<Props> = (props) => {
     navigator.clipboard.writeText(cost.toString());
   };
 
-  const {props: touchProps} = useLongPress(copy);
-
-  return <Component {...touchProps}>${cost}</Component>;
+  return <Component onClick={copy}>${cost}</Component>;
 };
