@@ -21,7 +21,7 @@ export const tokenize = {
 
 export const toField = (token: Token.Any) => {
   if (isNumeric(token)) {
-    return token.value.toString();
+    return precision(token.value);
   }
 
   if (isOp(token)) {
