@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {FiDelete} from 'react-icons/fi';
+import {FiDelete, FiClipboard} from 'react-icons/fi';
 import {MdOutlineSwipeVertical, MdOutlineSwipe} from 'react-icons/md';
 
 import {color, spacing} from '../styles';
@@ -11,10 +11,14 @@ const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
   gap: spacing.inputPadding,
-  top: `88px`, // To make guide be right in the middle of two inputs
+  top: `46px`, // To make guide be right in the middle of two inputs
   position: 'absolute',
   color: color.light,
   insetInlineStart: `16px`,
+});
+
+const FinalText = styled.span({
+  color: color.final,
 });
 
 export const Instructions: FC = () => {
@@ -24,6 +28,9 @@ export const Instructions: FC = () => {
       <Instruction Icon={MdOutlineSwipeVertical}>jump to field</Instruction>
       <Instruction Icon={MdOutlineSwipe}>jump to field</Instruction>
       <Instruction Icon={FiDelete}>hold to delete</Instruction>
+      <Instruction Icon={FiClipboard}>
+        hold <FinalText>$</FinalText> to copy
+      </Instruction>
     </Container>
   );
 };
