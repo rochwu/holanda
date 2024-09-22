@@ -12,9 +12,9 @@ export const Item: FC = () => {
   const cost = useCost(id);
 
   return (
-    <Line name="thing">
+    <Line name="mine">
       <Final cost={cost} />
-      <Field identifier={id} />
+      <Field identifier={id} order={3} />
     </Line>
   );
 };

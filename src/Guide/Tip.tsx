@@ -4,7 +4,6 @@ import type {IconType} from 'react-icons';
 
 import {spacing} from '../styles';
 
-
 type Props = {
   Icon?: IconType;
   children: ReactNode;
@@ -21,7 +20,7 @@ const Text = styled.span({
   fontSize: spacing.label,
 });
 
-export const Instruction: FC<Props> = ({Icon, children}) => {
+export const Tip: FC<Props> = ({Icon, children}) => {
   return (
     <Container>
       {Icon && <Icon />}

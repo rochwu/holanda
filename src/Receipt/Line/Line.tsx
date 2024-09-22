@@ -25,6 +25,7 @@ export const Line: FC<Props> = ({
   symbol,
   children,
   heading,
+
   ...elementProps
 }) => {
   return (

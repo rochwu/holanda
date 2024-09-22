@@ -8,11 +8,12 @@ import {useIdentifier} from '../../useIdentifier';
 
 import {Base} from './Base';
 import {Editing} from './Editing';
-import {Selectable} from './Selectable';
+import {Selectable, SelectableProps} from './Selectable';
 
 type Props = {
   identifier?: Id;
-} & Parameters<typeof Base>[0];
+} & Parameters<typeof Base>[0] &
+  Pick<SelectableProps, 'order'>;
 
 export const Field: FC<Props> = ({identifier, onClick, ...props}) => {
   const id = useIdentifier(identifier);

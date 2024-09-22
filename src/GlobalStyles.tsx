@@ -8,7 +8,7 @@ const styles = css({
     display: 'grid',
     placeContent: 'center',
     position: 'relative',
-    backgroundColor: color.dev,
+    backgroundColor: color.background,
     overflow: 'hidden', // stops iOS safari from swiping vertically
     userSelect: 'none', // iOS sucks when double click selects shit
     margin: 0, // no user agent
@@ -16,7 +16,7 @@ const styles = css({
   },
 
   'body, button': {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: '"Nunito", sans-serif',
   },
 
   button: {

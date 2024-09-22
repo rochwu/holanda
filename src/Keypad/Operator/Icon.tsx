@@ -1,6 +1,11 @@
 import {FC, useMemo} from 'react';
-import {FiDivide, FiX, FiPlus, FiMinus} from 'react-icons/fi';
-import {RxDot} from 'react-icons/rx';
+import {
+  PiDivideBold,
+  PiDotOutlineBold,
+  PiMinusBold,
+  PiPlusBold,
+  PiXBold,
+} from 'react-icons/pi';
 
 import {OpType} from '../../types';
 
@@ -11,16 +16,16 @@ type Props = {
 const getComponent = (op: OpType) => {
   switch (op) {
     case OpType.Add:
-      return FiPlus;
+      return PiPlusBold;
     case OpType.Subtract:
-      return FiMinus;
+      return PiMinusBold;
     case OpType.Multiply:
-      return FiX;
+      return PiXBold;
     case OpType.Divide:
-      return FiDivide;
+      return PiDivideBold;
     case OpType.Dot:
     default:
-      return RxDot;
+      return PiDotOutlineBold;
   }
 };
 

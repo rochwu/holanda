@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {FiDelete, FiClipboard} from 'react-icons/fi';
-import {MdOutlineSwipeVertical, MdOutlineSwipe} from 'react-icons/md';
+import {
+  PiBackspaceBold,
+  PiCopySimpleBold,
+  PiHandSwipeLeftBold,
+} from 'react-icons/pi';
 
 import {color, spacing} from '../styles';
 
-import {Instruction} from './Instruction';
+import {Tip} from './Tip';
 
 const Container = styled.div({
   display: 'flex',
@@ -21,16 +24,14 @@ const FinalText = styled.span({
   color: color.final,
 });
 
-export const Instructions: FC = () => {
+export const Guide: FC = () => {
   return (
     <Container>
-      <Instruction>GUIDE</Instruction>
-      <Instruction Icon={MdOutlineSwipeVertical}>jump to field</Instruction>
-      <Instruction Icon={MdOutlineSwipe}>jump to field</Instruction>
-      <Instruction Icon={FiDelete}>hold to delete</Instruction>
-      <Instruction Icon={FiClipboard}>
+      <Tip Icon={PiHandSwipeLeftBold}>swipe to field</Tip>
+      <Tip Icon={PiBackspaceBold}>hold to clear</Tip>
+      <Tip Icon={PiCopySimpleBold}>
         tap <FinalText>$</FinalText> to copy
-      </Instruction>
+      </Tip>
     </Container>
   );
 };

@@ -15,7 +15,7 @@ export const CustomTips: FC = () => {
   const tip = useStore(useCallback((state) => state.tip(id), [id]));
 
   return (
-    <Line name="???%" symbol={`\u00D7`}>
+    <Line name="_%" symbol={`\u00D7`}>
       <Field identifier={id} onClick={tip} width={spacing.shortInput} />
       <Base identifier={id} percent={percent} />
     </Line>

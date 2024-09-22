@@ -9,12 +9,16 @@ type Props = {
   children: ReactNode;
 };
 
+const maxWidth = '500px';
+
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'center',
+  [`@media only screen and (max-width: ${maxWidth})`]: {justifyContent: 'end'},
   position: 'relative',
-  maxWidth: '393px', // iPhone 14 Pro
-  maxHeight: '660px',
+  maxWidth: `min(100dvw, ${maxWidth})`,
+  height: '100dvh',
   backgroundColor: color.background,
 });
 

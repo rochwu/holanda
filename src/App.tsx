@@ -3,8 +3,7 @@ import {FC, useRef} from 'react';
 
 import {Debug} from './Debug';
 import {GlobalStyles} from './GlobalStyles';
-import {Header} from './Header';
-import {Instructions} from './Instructionts';
+import {Guide} from './Guide';
 import {Keypad} from './Keypad';
 import {Receipt} from './Receipt';
 import {System} from './System';
@@ -36,9 +35,8 @@ const Real: FC = () => {
 
   return (
     <Theming ref={content}>
-      <Header />
       <Container>
-        <Instructions />
+        <Guide />
         <Receipt />
         <Keypad />
       </Container>

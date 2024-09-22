@@ -18,6 +18,8 @@ export const useLongPress = (callback: () => void) => {
       onTouchStart: start,
       onTouchEnd: cancel,
       onTouchCancel: cancel,
+      onMouseDown: start,
+      onMouseUp: cancel
     },
   };
 };

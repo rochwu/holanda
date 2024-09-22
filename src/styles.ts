@@ -11,7 +11,7 @@ const pixels = {
   inputPadding: 8,
   focus: 4,
   minInput: 44,
-};
+} as const;
 
 /**
  * things with px
@@ -27,7 +27,7 @@ export const spacing = {
   label: '12px', // At least 12 for font
   focus: `${pixels.focus}px`,
   minInputHeight: `${pixels.minInput}px`,
-};
+} as const;
 
 // no negative
 const palette = {
@@ -41,7 +41,8 @@ const palette = {
     .toString(),
   backgroundText: '#EFEFEF',
   final: '#50C878',
-};
+  order: '#A3D4F7',
+} as const;
 
 export const color = {
   ...palette,

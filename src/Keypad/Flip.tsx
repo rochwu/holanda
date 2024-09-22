@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {MdFlip} from 'react-icons/md';
+import {PiFlipHorizontalDuotone} from 'react-icons/pi';
 
 import {useStore} from '../store';
 import {styles} from '../styles';
@@ -34,7 +34,7 @@ export const Flip: FC = () => {
 
   return (
     <Container aria-label="flip keyboard" onClick={flip}>
-      <MdFlip />
+      <PiFlipHorizontalDuotone />
     </Container>
   );
 };
