@@ -29,7 +29,7 @@ export const Receipt: FC<Props> = (props) => {
       <Subtotal />
       <Tax />
       <LineTotal />
-      <Tips heading="tips" percent={15} />
+      <Tips percent={15} />
       <Tips percent={18} />
       <Tips percent={20} />
       <CustomTips />

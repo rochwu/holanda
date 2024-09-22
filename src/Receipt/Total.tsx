@@ -53,9 +53,9 @@ const Value: FC = () => {
 export const Total: FC = () => {
   return (
     <>
-      <Component name="total" symbol="=">
+      <Component name="total after tip" symbol="=">
         <Value />
-        <Field identifier={id} />
+        <Field identifier={id} order={2} />
       </Component>
       <System />
     </>

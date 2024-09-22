@@ -5,14 +5,18 @@ import {FC, ReactNode} from 'react';
 import {color, spacing} from '../../styles';
 
 import {Base} from './Base';
+import {Order} from './Order';
 
 export const Component = styled(Base)(color.buttons.number, {
   height: '100%',
+  position: 'relative',
 });
 
-type Props = {children: ReactNode; selected: boolean} & Parameters<
-  typeof Component
->[0];
+export type SelectableProps = {
+  children: ReactNode;
+  selected: boolean;
+  order?: number;
+} & Parameters<typeof Component>[0];
 
 const boxShadow = (props: {color: string}) =>
   `0 0 0 ${spacing.focus} ${props.color}`;
@@ -36,10 +40,16 @@ const FocusRing = styled.div<{selected: boolean}>({}, ({selected}) => {
   }
 });
 
-export const Selectable: FC<Props> = ({children, selected, ...props}) => {
+export const Selectable: FC<SelectableProps> = ({
+  children,
+  selected,
+  order,
+  ...props
+}) => {
   return (
     <FocusRing selected={selected}>
       <Component tabIndex={0} {...props}>
+        {order && <Order>{order}</Order>}
         {children}
       </Component>
     </FocusRing>

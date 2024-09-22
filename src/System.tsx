@@ -1,4 +1,4 @@
-import {useSwipe} from '@nederland/use-swipe';
+import {useSwipe} from '@holanda/use-swipe';
 import {FC} from 'react';
 
 import {order} from './order';

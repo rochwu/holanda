@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
-import {FiDelete} from 'react-icons/fi';
+import {PiBackspaceBold} from 'react-icons/pi';
 
 import {useStore} from '../store';
 import {styles} from '../styles';
@@ -27,7 +27,7 @@ export const Backspace: FC = () => {
       onClick={pop}
       {...props}
     >
-      <FiDelete />
+      <PiBackspaceBold />
     </Component>
   );
 };

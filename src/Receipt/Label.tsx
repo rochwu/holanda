@@ -10,7 +10,6 @@ const Container = styled(Cell)({
   display: 'flex',
   alignItems: 'center',
   fontSize: spacing.label,
-  textTransform: 'uppercase',
   color: color.backgroundText,
   gap: spacing.focus,
 });

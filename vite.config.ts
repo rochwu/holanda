@@ -15,12 +15,11 @@ export default defineConfig(() => {
   }
 
   return {
-    base: '/nederland',
+    base: '/holanda',
     server: {
       open: true,
       port: 3000,
       host: true,
-      https: true,
     },
     build: {},
     plugins,

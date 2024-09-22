@@ -38,4 +38,4 @@ export const handleWheel = ({deltaY, deltaX}: WheelEvent) => {
   lastDelta = delta;
 };
 
-export const throttledHandleWheel = throttle(handleWheel, 333, {leading: true});
+export const throttledHandleWheel = throttle(handleWheel, 100, {leading: true});

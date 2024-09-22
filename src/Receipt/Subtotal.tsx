@@ -10,7 +10,7 @@ const id = Ids.Subtotal;
 export const Subtotal: FC = () => {
   return (
     <Line name="subtotal" symbol="+">
-      <Field identifier={id} />
+      <Field identifier={id} order={1} />
     </Line>
   );
 };

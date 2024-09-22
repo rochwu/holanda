@@ -7,7 +7,6 @@ export const Heading = styled.div(
   {
     position: 'absolute',
     top: 0,
-    textTransform: 'uppercase',
     padding: '4px 16px',
     fontSize: '16px',
     fontWeight: 'bold',
